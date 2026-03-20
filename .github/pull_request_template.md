@@ -1,0 +1,31 @@
+## What does this PR do?
+
+<!-- Brief description of the change -->
+
+## Which component(s) does it touch?
+
+- [ ] MG_MODE.md (brain / routing)
+- [ ] conductor/
+- [ ] registry/
+- [ ] identity/
+- [ ] graph/
+- [ ] map/
+- [ ] optimizer/
+- [ ] governance/
+- [ ] profiles/
+- [ ] session/
+- [ ] activation/
+- [ ] test/
+- [ ] Top-level docs (README, CONTRIBUTING, CHANGELOG)
+
+## Checklist
+
+- [ ] Changes are limited to `mg-mode-core/` (Layer 1 is read-only)
+- [ ] `bash mg-mode-core/test/mg-mode-test-runner.sh` — all 72 checks pass
+- [ ] No hardcoded paths or machine-specific values
+- [ ] Registry entries (if any) have a real backing file in `agency-agents/`
+- [ ] CHANGELOG.md updated (if user-facing change)
+
+## Context
+
+<!-- Why is this change needed? Link to issue if applicable. -->

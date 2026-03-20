@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "matching_rules": {
+    "normalize": "lowercase and trim surrounding whitespace",
+    "match_type": "substring phrase match against the registry keywords",
+    "single_match": "route to the matched mode",
+    "multiple_matches": "ask a clarifying question instead of guessing",
+    "no_matches": "ask a clarifying question instead of guessing"
+  },
+  "modes": [
+    {
+      "mode": "plan",
+      "keywords": ["plan", "design", "architect", "think about", "how should we"],
+      "routes_to": ["map/ (plan mode)", "office-hours", "plan-ceo-review", "plan-eng-review", "plan-design-review"],
+      "output": "ADR, design doc, or plan document"
+    },
+    {
+      "mode": "ask",
+      "keywords": ["what is", "explain", "why does", "how does", "show me"],
+      "routes_to": ["graph/", "investigate", "domain expert role"],
+      "output": "Explanation without file modifications"
+    },
+    {
+      "mode": "execute",
+      "keywords": ["build", "create", "fix", "implement", "add", "remove", "update"],
+      "routes_to": ["full orchestration flow", "map/ pre-execution", "governance/ gate when required"],
+      "output": "Code changes, file modifications, and deliverables"
+    },
+    {
+      "mode": "review",
+      "keywords": ["review", "check", "audit", "validate", "test"],
+      "routes_to": ["review", "guard", "qa", "relevant testing roles"],
+      "output": "Review findings and validation results"
+    }
+  ]
+}

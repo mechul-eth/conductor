@@ -1,0 +1,14 @@
+[submodule "agency-agents"]
+	path = agency-agents
+	url = https://github.com/msitarzewski/agency-agents.git
+	ignore = dirty
+
+[submodule "gstack"]
+	path = gstack
+	url = https://github.com/garrytan/gstack.git
+	ignore = dirty
+
+[submodule "promptfoo"]
+	path = promptfoo
+	url = https://github.com/promptfoo/promptfoo.git
+	ignore = dirty
