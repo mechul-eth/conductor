@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-If you find a security issue in Conductor's orchestration layer (`mg-mode-core/`), please do not open a public GitHub issue.
+If you find a security issue in Conductor's orchestration layer (`conductor-core/`), please do not open a public GitHub issue.
 
 Instead, use GitHub's private vulnerability reporting:
 **[Report a vulnerability](https://github.com/mechul-eth/conductor/security/advisories/new)**
@@ -40,7 +40,7 @@ Security issues in the underlying libraries should go to their maintainers:
 - Governance gate bypass vulnerabilities
 - Identity token issues that could allow privilege escalation
 - Prompt injection paths in the conductor or map components
-- The bootstrap script (`mg-mode-core/activation/bootstrap.sh`)
+- The bootstrap script (`conductor-core/activation/bootstrap.sh`)
 
 ### Out of scope
 

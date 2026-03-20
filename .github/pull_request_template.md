@@ -20,8 +20,8 @@
 
 ## Checklist
 
-- [ ] Changes are limited to `mg-mode-core/` (Layer 1 is read-only)
-- [ ] `bash mg-mode-core/test/conductor-test-runner.sh` — all 72 checks pass
+- [ ] Changes are limited to `conductor-core/` (Layer 1 is read-only)
+- [ ] `bash conductor-core/test/conductor-test-runner.sh` — all 72 checks pass
 - [ ] No hardcoded paths or machine-specific values
 - [ ] Registry entries (if any) have a real backing file in `agency-agents/`
 - [ ] CHANGELOG.md updated (if user-facing change)

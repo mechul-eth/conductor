@@ -231,7 +231,7 @@ Dependencies: API design → implementation → testing → documentation
 
 **Test this with mock request:**
 ```bash
-curl -X POST http://localhost:3000/mg-mode/route \
+curl -X POST http://localhost:3000/conductor/route \
   -H "Content-Type: application/json" \
   -d '{
     "user_intent": "Implement payment gateway with tests",
@@ -312,7 +312,7 @@ Attempt 3: Role hypothesizes "stale cache" → fix → tests still fail
 ```bash
 for i in 1 2 3; do
   echo "Attempt $i"
-  curl -X POST http://localhost:3000/mg-mode/investigate \
+  curl -X POST http://localhost:3000/conductor/investigate \
     -H "Content-Type: application/json" \
     -d '{"task_id": "task-loop-test", "hypothesis": "hypothesis_'$i'"}'
   sleep 2
@@ -536,7 +536,7 @@ Task: Conductor added to an existing Node.js project with README, package.json, 
 ```
 
 **Expected flow:**
-1. ✅ Activation detects existing codebase (source files exist beyond mg-mode-core/)
+1. ✅ Activation detects existing codebase (source files exist beyond conductor-core/)
 2. ✅ **Standard scan — all 6 steps:**
    - README.md → project description, purpose
    - package.json → name, dependencies, scripts
@@ -607,7 +607,7 @@ Task: Conductor added to a fintech platform preparing for launch, with complianc
 
 #### Cross-profile validation criteria (all profiles):
 
-- [ ] Existing codebase detection works (checks for source files beyond mg-mode-core/)
+- [ ] Existing codebase detection works (checks for source files beyond conductor-core/)
 - [ ] Source tracing on every proposed entry
 - [ ] Read-only — no existing project files modified
 - [ ] Idempotent — running scan again doesn't duplicate entries
@@ -639,13 +639,13 @@ existing_repo_bootstrap:
 
   **Setup:**
   ```
-  Surface A: mg-mode-core/conductor mode routing
+  Surface A: conductor-core/conductor mode routing
   Surface B: gstack root skill suggestion discovery
   Hosts: Claude-host SKILL.md and Codex-host .agents/skills/gstack/SKILL.md
   ```
 
   **Expected flow:**
-  1. ✅ `mg-mode-core/conductor/mode-triggers.json` defines all 4 conductor modes and their keywords
+  1. ✅ `conductor-core/conductor/mode-triggers.json` defines all 4 conductor modes and their keywords
   2. ✅ conductor/README.md references the registry and defines deterministic matching rules
   3. ✅ If exactly one mode matches, conductor routes to it
   4. ✅ If zero or multiple modes match, conductor asks a clarifying question instead of guessing

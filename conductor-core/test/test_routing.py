@@ -6,7 +6,7 @@ Traces the conductor's routing algorithm against concrete user intents.
 Validates: role picking, fallback chains, NEXUS sizing, session state
 carry-over, and multi-role switching within a single session.
 
-Usage: python3 mg-mode-core/test/test_routing.py
+Usage: python3 conductor-core/test/test_routing.py
 """
 
 import os
@@ -591,11 +591,11 @@ def test_layer1_file_integrity():
         "gstack/ship/",
         "gstack/investigate/",
         "gstack/office-hours/",
-        "mg-mode-core/CONDUCTOR.md",
-        "mg-mode-core/conductor/README.md",
-        "mg-mode-core/registry/README.md",
-        "mg-mode-core/session/README.md",
-        "mg-mode-core/activation/bootstrap.sh",
+        "conductor-core/CONDUCTOR.md",
+        "conductor-core/conductor/README.md",
+        "conductor-core/registry/README.md",
+        "conductor-core/session/README.md",
+        "conductor-core/activation/bootstrap.sh",
     ]
 
     passed = 0

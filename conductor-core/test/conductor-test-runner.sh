@@ -5,7 +5,7 @@
 set -e
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-TEST_DIR="$PROJECT_ROOT/mg-mode-core/test"
+TEST_DIR="$PROJECT_ROOT/conductor-core/test"
 SESSION_DIR="$HOME/.conductor/sessions"
 TIMESTAMP=$(date -u +%Y%m%d_%H%M%S)
 TEST_LOG="$TEST_DIR/test-run_${TIMESTAMP}.log"
@@ -51,7 +51,7 @@ test_profile_selection() {
   local test_passed=0
   
   # Check all 4 modes exist in CONDUCTOR.md
-  if grep -q "learning\|MVP\|production-lite\|production-strict" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "learning\|MVP\|production-lite\|production-strict" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "All 4 profile modes documented in CONDUCTOR.md"
     ((test_passed++))
   else
@@ -59,7 +59,7 @@ test_profile_selection() {
   fi
   
   # Check FIRST ACTIVATION CHECKLIST exists
-  if grep -q "FIRST ACTIVATION CHECKLIST" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "FIRST ACTIVATION CHECKLIST" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Activation checklist found"
     ((test_passed++))
   else
@@ -67,7 +67,7 @@ test_profile_selection() {
   fi
   
   # Check profiles/ directory exists
-  if [ -d "$PROJECT_ROOT/mg-mode-core/profiles" ]; then
+  if [ -d "$PROJECT_ROOT/conductor-core/profiles" ]; then
     test_pass "profiles/ directory exists"
     ((test_passed++))
   else
@@ -75,7 +75,7 @@ test_profile_selection() {
   fi
   
   # Check profile fallback behavior (Gap 1 fix)
-  if grep -q "default to.*learning\|auto-defaulted to learning" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "default to.*learning\|auto-defaulted to learning" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Profile fallback to learning documented"
     ((test_passed++))
   else
@@ -95,7 +95,7 @@ test_role_routing() {
   local test_passed=0
   
   # Check Role Selection Algorithm exists
-  if grep -q "Role Selection Algorithm" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Role Selection Algorithm" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Role Selection Algorithm documented"
     ((test_passed++))
   else
@@ -103,7 +103,7 @@ test_role_routing() {
   fi
   
   # Check minimum-role-set principle
-  if grep -q "complexity=simple.*1 role\|complexity=compound, dependencies=none.*1 role" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "complexity=simple.*1 role\|complexity=compound, dependencies=none.*1 role" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Minimum-role-set principle documented"
     ((test_passed++))
   else
@@ -111,7 +111,7 @@ test_role_routing() {
   fi
   
   # Check NEXUS deployment modes documented
-  if grep -q "NEXUS.*Deployment\|NEXUS.*learning\|NEXUS-Micro\|NEXUS-Sprint\|NEXUS-Full" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "NEXUS.*Deployment\|NEXUS.*learning\|NEXUS-Micro\|NEXUS-Sprint\|NEXUS-Full" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "NEXUS deployment modes documented"
     ((test_passed++))
   else
@@ -119,7 +119,7 @@ test_role_routing() {
   fi
   
   # Check registry/ directory exists
-  if [ -d "$PROJECT_ROOT/mg-mode-core/registry" ]; then
+  if [ -d "$PROJECT_ROOT/conductor-core/registry" ]; then
     test_pass "registry/ directory exists"
     ((test_passed++))
   else
@@ -127,7 +127,7 @@ test_role_routing() {
   fi
   
   # Check capability fingerprints schema (Gap 2 fix)
-  if grep -q "Capability Fingerprints" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" && grep -q "can-read-files\|can-write-files\|can-parse-ast" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Capability Fingerprints" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" && grep -q "can-read-files\|can-write-files\|can-parse-ast" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Capability fingerprints schema documented"
     ((test_passed++))
   else
@@ -147,7 +147,7 @@ test_handoff_schema() {
   local test_passed=0
   
   # Check schema exists
-  if grep -q "HANDOFF SCHEMA" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "HANDOFF SCHEMA" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Handoff schema documented"
     ((test_passed++))
   else
@@ -158,7 +158,7 @@ test_handoff_schema() {
   local required_fields=("metadata" "context" "deliverable_request" "quality_expectations" "prime_directives_check" "user_prompts")
   local found_fields=0
   for field in "${required_fields[@]}"; do
-    if grep -q "  $field:" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+    if grep -q "  $field:" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
       ((found_fields++))
     fi
   done
@@ -171,7 +171,7 @@ test_handoff_schema() {
   fi
   
   # Check prime_directives_check fields
-  if grep -q "zero_silent_failures\|every_error_named\|data_flows_traced\|edge_cases_mapped" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "zero_silent_failures\|every_error_named\|data_flows_traced\|edge_cases_mapped" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Prime directives check fields documented"
     ((test_passed++))
   else
@@ -191,7 +191,7 @@ test_loop_safety() {
   local test_passed=0
   
   # Check max retries documented
-  if grep -q "Max retries per task.*3" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Max retries per task.*3" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Max retries (3) documented"
     ((test_passed++))
   else
@@ -199,7 +199,7 @@ test_loop_safety() {
   fi
   
   # Check semantic loop detection
-  if grep -q "Semantic loop detection.*cosine similarity.*0.85" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Semantic loop detection.*cosine similarity.*0.85" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Semantic loop detection with threshold documented"
     ((test_passed++))
   else
@@ -207,7 +207,7 @@ test_loop_safety() {
   fi
   
   # Check escalation rule
-  if grep -q "Escalation rule.*After 3 unsuccessful attempts" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Escalation rule.*After 3 unsuccessful attempts" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "3-strike escalation rule documented"
     ((test_passed++))
   else
@@ -215,7 +215,7 @@ test_loop_safety() {
   fi
   
   # Check COMPLETION STATUS PROTOCOL
-  if grep -q "COMPLETION STATUS PROTOCOL" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "COMPLETION STATUS PROTOCOL" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Completion status protocol documented"
     ((test_passed++))
   else
@@ -223,7 +223,7 @@ test_loop_safety() {
   fi
   
   # Check graph init timeout fallback (Gap 4 fix)
-  if grep -q "Graph init incomplete\|Timeout.*5 second\|graph_init.*5s" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Graph init incomplete\|Timeout.*5 second\|graph_init.*5s" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Graph init timeout fallback documented"
     ((test_passed++))
   else
@@ -243,7 +243,7 @@ test_scope_drift() {
   local test_passed=0
   
   # Check scope drift section exists
-  if grep -q "SCOPE DRIFT DETECTION" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "SCOPE DRIFT DETECTION" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Scope drift detection section found"
     ((test_passed++))
   else
@@ -251,7 +251,7 @@ test_scope_drift() {
   fi
   
   # Check verdicts: CLEAN, SCOPE_CREEP, REQUIREMENTS_MISSING
-  if grep -q "CLEAN\|SCOPE_CREEP\|REQUIREMENTS_MISSING" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "CLEAN\|SCOPE_CREEP\|REQUIREMENTS_MISSING" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "All 3 scope drift verdicts documented"
     ((test_passed++))
   else
@@ -259,7 +259,7 @@ test_scope_drift() {
   fi
   
   # Check timing: before quality gates
-  if grep -q "Runs before quality gates, not after" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Runs before quality gates, not after" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Scope drift timing (before gates) documented"
     ((test_passed++))
   else
@@ -279,7 +279,7 @@ test_blast_radius() {
   local test_passed=0
   
   # Check ACTION CLASSIFICATION section
-  if grep -q "ACTION CLASSIFICATION" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "ACTION CLASSIFICATION" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Action classification rules found"
     ((test_passed++))
   else
@@ -287,7 +287,7 @@ test_blast_radius() {
   fi
   
   # Check blast radius gate (> 5 files)
-  if grep -q "BLAST RADIUS GATE\|touches > 5 files" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "BLAST RADIUS GATE\|touches > 5 files" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Blast radius gate (> 5 files) documented"
     ((test_passed++))
   else
@@ -295,7 +295,7 @@ test_blast_radius() {
   fi
   
   # Check reclassification to SURFACE-TO-USER
-  if grep -q "unconditionally reclassified as SURFACE-TO-USER" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "unconditionally reclassified as SURFACE-TO-USER" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Reclassification rule documented"
     ((test_passed++))
   else
@@ -303,7 +303,7 @@ test_blast_radius() {
   fi
   
   # Check 3 options (A/B/C)
-  if grep -q "\\(A\\).*\\(B\\).*\\(C\\)" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "\\(A\\).*\\(B\\).*\\(C\\)" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "A/B/C options for user decision found"
     ((test_passed++))
   else
@@ -323,7 +323,7 @@ test_quality_gates() {
   local test_passed=0
   
   # Check Session Lifecycle section
-  if grep -q "Quality Gates.*before shipping\|Evidence Collector" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Quality Gates.*before shipping\|Evidence Collector" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Quality gates phase documented"
     ((test_passed++))
   else
@@ -331,7 +331,7 @@ test_quality_gates() {
   fi
   
   # Check Baseline vs Security-Deep groups
-  if grep -q "Baseline Group.*Security-Deep Group" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Baseline Group.*Security-Deep Group" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Baseline and Security-Deep groups distinguished"
     ((test_passed++))
   else
@@ -339,7 +339,7 @@ test_quality_gates() {
   fi
   
   # Check production-strict gates
-  if grep -q "production-strict.*cross-model review\|challenge mode\|Reality Checker" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "production-strict.*cross-model review\|challenge mode\|Reality Checker" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Production-strict gate requirements documented"
     ((test_passed++))
   else
@@ -359,7 +359,7 @@ test_layer1_override() {
   local test_passed=0
   
   # Check SUPREME POLICY
-  if grep -q "SUPREME POLICY" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "SUPREME POLICY" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Supreme policy section found"
     ((test_passed++))
   else
@@ -367,7 +367,7 @@ test_layer1_override() {
   fi
   
   # Check Layer 1 override policy table
-  if grep -q "LAYER 1 OVERRIDE POLICY" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "LAYER 1 OVERRIDE POLICY" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Layer 1 override policy table found"
     ((test_passed++))
   else
@@ -375,8 +375,8 @@ test_layer1_override() {
   fi
   
   # Check Completeness Principle intercept (in SUPREME POLICY or Layer 1 Override)
-  if grep -q "Completeness Principle" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
-    if grep -q "intercepted\|surface as recommendation" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Completeness Principle" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
+    if grep -q "intercepted\|surface as recommendation" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
       test_pass "Completeness Principle intercept documented"
       ((test_passed++))
     else
@@ -387,7 +387,7 @@ test_layer1_override() {
   fi
   
   # Check proactive=false enforcement
-  if grep -q "proactive=false.*enforced at activation" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "proactive=false.*enforced at activation" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Proactive disable enforcement documented"
     ((test_passed++))
   else
@@ -395,7 +395,7 @@ test_layer1_override() {
   fi
   
   # Check re-grounding template (Gap 6 fix)
-  if grep -q "Re-grounding Template" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" && grep -q "project_name.*current_phase\|agent_name.*needs a decision" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Re-grounding Template" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" && grep -q "project_name.*current_phase\|agent_name.*needs a decision" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Re-grounding template documented"
     ((test_passed++))
   else
@@ -415,7 +415,7 @@ test_investigation_protocol() {
   local test_passed=0
   
   # Check investigation protocol section
-  if grep -q "INVESTIGATION PROTOCOL" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "INVESTIGATION PROTOCOL" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Investigation protocol section found"
     ((test_passed++))
   else
@@ -423,7 +423,7 @@ test_investigation_protocol() {
   fi
   
   # Check 6 bug patterns
-  if grep -q "Race condition\|Nil.*null propagation\|State corruption\|Integration failure\|Configuration drift\|Stale cache" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Race condition\|Nil.*null propagation\|State corruption\|Integration failure\|Configuration drift\|Stale cache" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "6 bug patterns documented"
     ((test_passed++))
   else
@@ -431,7 +431,7 @@ test_investigation_protocol() {
   fi
   
   # Check 3-strike hypothesis testing
-  if grep -q "Hypothesis test.*3-strike rule" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Hypothesis test.*3-strike rule" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "3-strike hypothesis testing documented"
     ((test_passed++))
   else
@@ -439,7 +439,7 @@ test_investigation_protocol() {
   fi
   
   # Check red flags
-  if grep -q "Red flags.*quick fix for now\|fix before data flow traced\|each fix reveals new problem" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Red flags.*quick fix for now\|fix before data flow traced\|each fix reveals new problem" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Red flag warnings documented"
     ((test_passed++))
   else
@@ -461,7 +461,7 @@ test_layer2_components() {
   
   # Check all 11 component directories exist
   for dir in "${directories[@]}"; do
-    if [ -d "$PROJECT_ROOT/mg-mode-core/$dir" ]; then
+    if [ -d "$PROJECT_ROOT/conductor-core/$dir" ]; then
       ((test_passed++))
     else
       test_warn "Component directory missing: $dir"
@@ -475,7 +475,7 @@ test_layer2_components() {
   fi
   
   # Check CONDUCTOR.md exists (the 12th component — the Brain)
-  if [ -f "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" ]; then
+  if [ -f "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" ]; then
     test_pass "CONDUCTOR.md (Brain — 12th component) exists"
     ((test_passed++))
   else
@@ -495,7 +495,7 @@ test_session_format() {
   local test_passed=0
   
   # Check JSONL format documented (Gap 3 fix)
-  if grep -q "Session Persistence Format" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" && grep -q "JSONL" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Session Persistence Format" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" && grep -q "JSONL" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Session JSONL format documented"
     ((test_passed++))
   else
@@ -503,7 +503,7 @@ test_session_format() {
   fi
   
   # Check event types defined
-  if grep -q "task_routed.*role_started\|role_completed.*handoff" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "task_routed.*role_started\|role_completed.*handoff" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Session event types defined"
     ((test_passed++))
   else
@@ -511,7 +511,7 @@ test_session_format() {
   fi
   
   # Check concurrency safety rules
-  if grep -q "atomic append\|No locks" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "atomic append\|No locks" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Session concurrency safety documented"
     ((test_passed++))
   else
@@ -531,7 +531,7 @@ test_bypass_mechanism() {
   local test_passed=0
   
   # Check enforcement levels documented (Gap 5 fix)
-  if grep -q "Enforcement levels" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" && grep -q "Audit-only\|Warn-then-proceed\|Block-destructive" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Enforcement levels" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" && grep -q "Audit-only\|Warn-then-proceed\|Block-destructive" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Bypass enforcement levels documented"
     ((test_passed++))
   else
@@ -539,7 +539,7 @@ test_bypass_mechanism() {
   fi
   
   # Check audit entry format
-  if grep -q "bypass_attempt" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" && grep -q "audit entry format\|Audit entry format" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "bypass_attempt" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" && grep -q "audit entry format\|Audit entry format" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Bypass audit entry format documented"
     ((test_passed++))
   else
@@ -559,7 +559,7 @@ test_business_intelligence() {
   local test_passed=0
   
   # Check BUSINESS INTELLIGENCE section in CONDUCTOR.md
-  if grep -q "BUSINESS INTELLIGENCE" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "BUSINESS INTELLIGENCE" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Business intelligence section documented"
     ((test_passed++))
   else
@@ -570,7 +570,7 @@ test_business_intelligence() {
   local biz_files=("README.md" "user-profile.md" "core.md" "market.md" "insights.md")
   local found=0
   for f in "${biz_files[@]}"; do
-    if [ -f "$PROJECT_ROOT/mg-mode-core/business/$f" ]; then
+    if [ -f "$PROJECT_ROOT/conductor-core/business/$f" ]; then
       ((found++))
     fi
   done
@@ -582,7 +582,7 @@ test_business_intelligence() {
   fi
   
   # Check intelligence gathering rules
-  if grep -q "user-stated\|user-implied\|system-generated\|external" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "user-stated\|user-implied\|system-generated\|external" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Confidence tagging documented"
     ((test_passed++))
   else
@@ -590,7 +590,7 @@ test_business_intelligence() {
   fi
   
   # Check approval-before-persistence rule
-  if grep -q "Approval before persistence\|user confirms\|No silent writes" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Approval before persistence\|user confirms\|No silent writes" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Approval-before-write rule documented"
     ((test_passed++))
   else
@@ -598,7 +598,7 @@ test_business_intelligence() {
   fi
   
   # Check integration with routing
-  if grep -q "Check business/ for.*context\|business/ for relevant" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Check business/ for.*context\|business/ for relevant" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Business intelligence integrated with routing"
     ((test_passed++))
   else
@@ -606,7 +606,7 @@ test_business_intelligence() {
   fi
   
   # Check profile-aware intelligence depth table
-  if grep -q "Profile-Aware Intelligence Depth" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md" && grep -q "Onboarding questions.*learning.*MVP\|learning.*MVP.*production-lite" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Profile-Aware Intelligence Depth" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md" && grep -q "Onboarding questions.*learning.*MVP\|learning.*MVP.*production-lite" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Profile-aware intelligence depth table documented"
     ((test_passed++))
   else
@@ -614,7 +614,7 @@ test_business_intelligence() {
   fi
   
   # Check pre-ship intelligence review
-  if grep -q "Pre-ship intelligence review\|pre-ship.*block\|pre-ship.*warn" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Pre-ship intelligence review\|pre-ship.*block\|pre-ship.*warn" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Pre-ship intelligence review documented"
     ((test_passed++))
   else
@@ -634,7 +634,7 @@ test_existing_repo_bootstrap() {
   local test_passed=0
   
   # Check Existing Repo Bootstrap section in CONDUCTOR.md
-  if grep -q "Existing Repo Bootstrap\|EXISTING REPO SCAN" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Existing Repo Bootstrap\|EXISTING REPO SCAN" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Existing repo bootstrap section documented"
     test_passed=$((test_passed + 1))
   else
@@ -642,7 +642,7 @@ test_existing_repo_bootstrap() {
   fi
   
   # Check scan targets documented (README.md, package.json, configs, docs/)
-  if grep -q "Read README.md\|package.json.*Cargo.toml\|docker-compose" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Read README.md\|package.json.*Cargo.toml\|docker-compose" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Repo scan targets documented"
     test_passed=$((test_passed + 1))
   else
@@ -650,7 +650,7 @@ test_existing_repo_bootstrap() {
   fi
   
   # Check batch approval rule
-  if grep -q "batch.*approval\|batch for approval\|Present.*batch" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "batch.*approval\|batch for approval\|Present.*batch" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Batch approval rule documented"
     test_passed=$((test_passed + 1))
   else
@@ -658,7 +658,7 @@ test_existing_repo_bootstrap() {
   fi
   
   # Check idempotency rule (no overwrite of existing intelligence)
-  if grep -q "Idempotent\|only proposes additions.*never overwrites" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Idempotent\|only proposes additions.*never overwrites" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Idempotency rule documented"
     test_passed=$((test_passed + 1))
   else
@@ -666,7 +666,7 @@ test_existing_repo_bootstrap() {
   fi
   
   # Check that activation/ references existing repo detection
-  if grep -q "EXISTING CODEBASE\|existing.*codebase\|Existing codebase" "$PROJECT_ROOT/mg-mode-core/activation/README.md"; then
+  if grep -q "EXISTING CODEBASE\|existing.*codebase\|Existing codebase" "$PROJECT_ROOT/conductor-core/activation/README.md"; then
     test_pass "Activation flow references existing repo detection"
     test_passed=$((test_passed + 1))
   else
@@ -674,7 +674,7 @@ test_existing_repo_bootstrap() {
   fi
   
   # Check profile-specific scan extensions documented
-  if grep -q "production-lite adds\|production-strict adds" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "production-lite adds\|production-strict adds" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Profile-specific scan extensions documented"
     test_passed=$((test_passed + 1))
   else
@@ -682,7 +682,7 @@ test_existing_repo_bootstrap() {
   fi
   
   # Check scan depth scales with profile (quick scan vs deep scan)
-  if grep -q "Quick scan.*README.*package config\|Deep scan.*compliance.*security" "$PROJECT_ROOT/mg-mode-core/CONDUCTOR.md"; then
+  if grep -q "Quick scan.*README.*package config\|Deep scan.*compliance.*security" "$PROJECT_ROOT/conductor-core/CONDUCTOR.md"; then
     test_pass "Scan depth scales with profile level"
     test_passed=$((test_passed + 1))
   else
@@ -702,11 +702,11 @@ test_trigger_contracts() {
   local test_passed=0
 
   # Check conductor mode trigger registry exists and includes all 4 modes
-  if [ -f "$PROJECT_ROOT/mg-mode-core/conductor/mode-triggers.json" ] \
-    && grep -q '"mode": "plan"' "$PROJECT_ROOT/mg-mode-core/conductor/mode-triggers.json" \
-    && grep -q '"mode": "ask"' "$PROJECT_ROOT/mg-mode-core/conductor/mode-triggers.json" \
-    && grep -q '"mode": "execute"' "$PROJECT_ROOT/mg-mode-core/conductor/mode-triggers.json" \
-    && grep -q '"mode": "review"' "$PROJECT_ROOT/mg-mode-core/conductor/mode-triggers.json"; then
+  if [ -f "$PROJECT_ROOT/conductor-core/conductor/mode-triggers.json" ] \
+    && grep -q '"mode": "plan"' "$PROJECT_ROOT/conductor-core/conductor/mode-triggers.json" \
+    && grep -q '"mode": "ask"' "$PROJECT_ROOT/conductor-core/conductor/mode-triggers.json" \
+    && grep -q '"mode": "execute"' "$PROJECT_ROOT/conductor-core/conductor/mode-triggers.json" \
+    && grep -q '"mode": "review"' "$PROJECT_ROOT/conductor-core/conductor/mode-triggers.json"; then
     test_pass "Conductor mode trigger registry documented"
     ((test_passed++))
   else
@@ -714,8 +714,8 @@ test_trigger_contracts() {
   fi
 
   # Check conductor matching rules are explicit
-  if grep -q 'Single source of truth: `mode-triggers.json`' "$PROJECT_ROOT/mg-mode-core/conductor/README.md" \
-    && grep -q 'If zero or multiple modes match, ask a clarifying question instead of guessing' "$PROJECT_ROOT/mg-mode-core/conductor/README.md"; then
+  if grep -q 'Single source of truth: `mode-triggers.json`' "$PROJECT_ROOT/conductor-core/conductor/README.md" \
+    && grep -q 'If zero or multiple modes match, ask a clarifying question instead of guessing' "$PROJECT_ROOT/conductor-core/conductor/README.md"; then
     test_pass "Conductor trigger matching rules documented"
     ((test_passed++))
   else

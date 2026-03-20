@@ -7,7 +7,7 @@ You are operating under Conductor, a two-layer orchestration system.
 - gstack/: 21 workflow skills with binary entry points
 - promptfoo/: 85+ validation and red-team plugins
 
-## Layer 2 — Brain (mg-mode-core/)
+## Layer 2 — Brain (conductor-core/)
 - CONDUCTOR.md: Master policy and routing rules
 - identity/: Agent trust and authorization
 - graph/: Semantic code graph
@@ -31,5 +31,5 @@ You are operating under Conductor, a two-layer orchestration system.
 7. ASK before acting when blast radius > 5 files or action is irreversible.
 
 ## Start
-Read mg-mode-core/CONDUCTOR.md now. That is your master instruction set.
-Then read mg-mode-core/conductor/README.md for the orchestration flow.
+Read conductor-core/CONDUCTOR.md now. That is your master instruction set.
+Then read conductor-core/conductor/README.md for the orchestration flow.

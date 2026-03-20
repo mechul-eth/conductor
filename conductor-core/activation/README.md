@@ -68,7 +68,7 @@ STEP 4 — Run onboarding (first session)
     3. What scenario? → NEXUS mode sizing
 
   business/ intelligence bootstrap:
-    → Detect: Does workspace contain existing source files beyond mg-mode-core/?
+    → Detect: Does workspace contain existing source files beyond conductor-core/?
     → IF EXISTING CODEBASE:
         Scan README.md, package.json, configs, docs/ (read-only)
         → Present extracted intelligence to user as a batch
@@ -106,7 +106,7 @@ You are operating under Conductor, a two-layer orchestration system.
 - gstack/: 21+ workflow skills with binary entry points
 - promptfoo/: 85+ validation and red-team plugins
 
-## Layer 2 — Brain (mg-mode-core/)
+## Layer 2 — Brain (conductor-core/)
 - CONDUCTOR.md: Master policy and routing rules
 - identity/: Agent trust and authorization
 - graph/: Semantic code graph
@@ -134,7 +134,7 @@ You are operating under Conductor, a two-layer orchestration system.
 - NEXUS Mode: {nexus_mode}
 - Proactive: false (Layer 2 controls routing)
 
-@mg-mode-core/CONDUCTOR.md
+@conductor-core/CONDUCTOR.md
 ```
 
 ---
@@ -264,12 +264,12 @@ Custom tools exposed via MCP:
 git clone --recurse-submodules https://github.com/mechul-eth/conductor.git && cd Conductor
 
 # Bootstrap (generates IDE instruction file + runs onboarding)
-./mg-mode-core/activation/bootstrap.sh
+./conductor-core/activation/bootstrap.sh
 
 # Or manually:
 # 1. Copy the IDE instruction file template above into your IDE's config
 # 2. Open a chat with your IDE's agent
-# 3. Say: "Read mg-mode-core/CONDUCTOR.md and activate Conductor"
+# 3. Say: "Read conductor-core/CONDUCTOR.md and activate Conductor"
 # 4. Answer the 3 onboarding questions
 # 5. Start working
 ```
