@@ -300,7 +300,7 @@ The exact order conductor/ calls components for a standard execute task:
 ```
 Conductor checks for session state:
   
-  If ~/.mg-mode/sessions/ does not exist:
+  If ~/.conductor/sessions/ does not exist:
     → This is a first-ever run
     → Trigger activation/ bootstrap
     → Then profiles/ onboarding
@@ -309,7 +309,7 @@ Conductor checks for session state:
   
   If session state exists but no active session:
     → New session, existing user
-    → Load profile from ~/.mg-mode/projects/$SLUG/profile.yaml
+    → Load profile from ~/.conductor/projects/$SLUG/profile.yaml
     → Initialize new session state
     → Proceed with task
   

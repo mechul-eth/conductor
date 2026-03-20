@@ -62,4 +62,4 @@ Conductor is a markdown-based orchestration system that runs inside an AI coding
 
 - The orchestration runs inside the AI agent's context window — there is no server to attack
 - Prompt injection is a real concern in any AI system. If you find a way to make the conductor bypass its own governance gates via a crafted prompt, that's worth reporting
-- Session state is local to `~/.mg-mode/` — it doesn't leave your machine
+- Session state is local to `~/.conductor/` — it doesn't leave your machine

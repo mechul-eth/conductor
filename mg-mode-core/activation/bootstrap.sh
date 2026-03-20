@@ -9,9 +9,9 @@
 
 set -euo pipefail
 
-Conductor_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-CORE_DIR="$Conductor_ROOT/mg-mode-core"
-STATE_DIR="$HOME/.mg-mode"
+CONDUCTOR_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+CORE_DIR="$CONDUCTOR_ROOT/mg-mode-core"
+STATE_DIR="$HOME/.conductor"
 
 # Colors (if terminal supports them)
 if [[ -t 1 ]]; then
@@ -20,21 +20,21 @@ else
   GREEN=''; YELLOW=''; RED=''; NC=''
 fi
 
-info()  { echo -e "${GREEN}[mg-mode]${NC} $1"; }
-warn()  { echo -e "${YELLOW}[mg-mode]${NC} $1"; }
-error() { echo -e "${RED}[mg-mode]${NC} $1" >&2; }
+info()  { echo -e "${GREEN}[conductor]${NC} $1"; }
+warn()  { echo -e "${YELLOW}[conductor]${NC} $1"; }
+error() { echo -e "${RED}[conductor]${NC} $1" >&2; }
 
 # --- IDE Detection ---
 detect_ide() {
   if [[ -n "${VSCODE_PID:-}" ]] || [[ -n "${TERM_PROGRAM:-}" && "$TERM_PROGRAM" == "vscode" ]]; then
     echo "copilot"
-  elif [[ -n "${CLAUDE_CODE:-}" ]] || [[ -f "$Conductor_ROOT/CLAUDE.md" && -d "$HOME/.claude" ]]; then
+  elif [[ -n "${CLAUDE_CODE:-}" ]] || [[ -f "$CONDUCTOR_ROOT/CLAUDE.md" && -d "$HOME/.claude" ]]; then
     echo "claude"
-  elif [[ -n "${CURSOR_SESSION:-}" ]] || [[ -f "$Conductor_ROOT/.cursorrules" ]]; then
+  elif [[ -n "${CURSOR_SESSION:-}" ]] || [[ -f "$CONDUCTOR_ROOT/.cursorrules" ]]; then
     echo "cursor"
   elif command -v codex &>/dev/null && [[ -d "$HOME/.codex" ]]; then
     echo "codex"
-  elif [[ -f "$Conductor_ROOT/.windsurfrules" ]]; then
+  elif [[ -f "$CONDUCTOR_ROOT/.windsurfrules" ]]; then
     echo "windsurf"
   elif command -v aider &>/dev/null; then
     echo "aider"
@@ -108,26 +108,26 @@ INSTRUCTIONS
 # --- Write IDE-Specific File ---
 case "$IDE" in
   copilot)
-    TARGET="$Conductor_ROOT/.github/copilot-instructions.md"
+    TARGET="$CONDUCTOR_ROOT/.github/copilot-instructions.md"
     mkdir -p "$(dirname "$TARGET")"
     ;;
   claude)
-    TARGET="$Conductor_ROOT/CLAUDE.md"
+    TARGET="$CONDUCTOR_ROOT/CLAUDE.md"
     ;;
   cursor)
-    TARGET="$Conductor_ROOT/.cursorrules"
+    TARGET="$CONDUCTOR_ROOT/.cursorrules"
     ;;
   codex)
-    TARGET="$Conductor_ROOT/AGENTS.md"
+    TARGET="$CONDUCTOR_ROOT/AGENTS.md"
     ;;
   windsurf)
-    TARGET="$Conductor_ROOT/.windsurfrules"
+    TARGET="$CONDUCTOR_ROOT/.windsurfrules"
     ;;
   aider)
-    TARGET="$Conductor_ROOT/CONVENTIONS.md"
+    TARGET="$CONDUCTOR_ROOT/CONVENTIONS.md"
     ;;
   gemini)
-    TARGET="$Conductor_ROOT/GEMINI.md"
+    TARGET="$CONDUCTOR_ROOT/GEMINI.md"
     ;;
   *)
     error "Unsupported IDE: $IDE"
@@ -146,13 +146,13 @@ generate_instructions > "$TARGET"
 info "Wrote instruction file: $TARGET"
 
 # --- Initialize Layer 1 Submodules (if in a git repo and not yet initialized) ---
-if git -C "$Conductor_ROOT" rev-parse --is-inside-work-tree &>/dev/null; then
-  SUBMODULE_FILE="$Conductor_ROOT/.gitmodules"
+if git -C "$CONDUCTOR_ROOT" rev-parse --is-inside-work-tree &>/dev/null; then
+  SUBMODULE_FILE="$CONDUCTOR_ROOT/.gitmodules"
   if [[ -f "$SUBMODULE_FILE" ]]; then
     # Check if any submodule directory is missing or empty
     NEEDS_INIT=false
     for dir in agency-agents gstack promptfoo; do
-      if [[ ! -d "$Conductor_ROOT/$dir" ]] || [[ -z "$(ls -A "$Conductor_ROOT/$dir" 2>/dev/null)" ]]; then
+      if [[ ! -d "$CONDUCTOR_ROOT/$dir" ]] || [[ -z "$(ls -A "$CONDUCTOR_ROOT/$dir" 2>/dev/null)" ]]; then
         NEEDS_INIT=true
         break
       fi
@@ -161,7 +161,7 @@ if git -C "$Conductor_ROOT" rev-parse --is-inside-work-tree &>/dev/null; then
     if [[ "$NEEDS_INIT" == "true" ]]; then
       info "Initializing Layer 1 submodules (agency-agents, gstack)..."
       info "Note: promptfoo is large (~750MB). Skipping unless you need validation."
-      git -C "$Conductor_ROOT" submodule update --init agency-agents gstack 2>&1 || \
+      git -C "$CONDUCTOR_ROOT" submodule update --init agency-agents gstack 2>&1 || \
         warn "Submodule init failed — you can run: git submodule update --init agency-agents gstack"
       info "To also initialize promptfoo (for validation features): git submodule update --init promptfoo"
     fi
@@ -169,7 +169,7 @@ if git -C "$Conductor_ROOT" rev-parse --is-inside-work-tree &>/dev/null; then
 fi
 
 # --- Disable Layer 1 Proactive Mode ---
-GSTACK_CONFIG="$Conductor_ROOT/gstack/bin/gstack-config"
+GSTACK_CONFIG="$CONDUCTOR_ROOT/gstack/bin/gstack-config"
 if [[ -x "$GSTACK_CONFIG" ]]; then
   "$GSTACK_CONFIG" set proactive false
   info "Disabled Layer 1 proactive mode (gstack-config set proactive false)"
@@ -184,7 +184,7 @@ mkdir -p "$STATE_DIR/projects"
 info "Initialized state directory: $STATE_DIR"
 
 # --- Initialize Business Intelligence Directory ---
-BIZ_DIR="$Conductor_ROOT/mg-mode-core/business"
+BIZ_DIR="$CONDUCTOR_ROOT/mg-mode-core/business"
 BIZ_TEMPLATE="$CORE_DIR/business"
 if [ ! -d "$BIZ_DIR" ] || [ -z "$(ls -A "$BIZ_DIR" 2>/dev/null)" ]; then
   if [ -d "$BIZ_TEMPLATE" ]; then

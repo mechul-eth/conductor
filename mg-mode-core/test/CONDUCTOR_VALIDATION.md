@@ -82,7 +82,7 @@ fingerprints:
 **Structure:** Line-oriented JSON for immutability + atomic appends. No concurrent write conflicts.
 
 ```bash
-~/.mg-mode/sessions/
+~/.conductor/sessions/
 ├── {project-name}/
 │   ├── {session-id}.jsonl          # Main session log
 │   ├── {session-id}.meta.json      # Session metadata (read-only after init)

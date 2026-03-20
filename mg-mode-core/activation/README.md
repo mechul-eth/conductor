@@ -237,11 +237,11 @@ For IDEs supporting MCP, activation/ configures custom tools:
 ```json
 {
   "mcpServers": {
-    "mg-mode": {
+    "conductor": {
       "command": "npx",
-      "args": ["-y", "mg-mode-mcp-server"],
+      "args": ["-y", "conductor-mcp-server"],
       "env": {
-        "Conductor_ROOT": "/path/to/Conductor"
+        "CONDUCTOR_ROOT": "/path/to/Conductor"
       }
     }
   }
@@ -249,11 +249,11 @@ For IDEs supporting MCP, activation/ configures custom tools:
 ```
 
 Custom tools exposed via MCP:
-- `mg_mode_route` — route a task to the optimal role
-- `mg_mode_session` — read/write session state
-- `mg_mode_validate` — run promptfoo assertions
-- `mg_mode_cost` — check budget status
-- `mg_mode_graph` — query semantic code graph
+- `conductor_route` — route a task to the optimal role
+- `conductor_session` — read/write session state
+- `conductor_validate` — run promptfoo assertions
+- `conductor_cost` — check budget status
+- `conductor_graph` — query semantic code graph
 
 ---
 

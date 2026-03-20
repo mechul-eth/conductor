@@ -176,7 +176,7 @@ De-escalation: user must explicitly request. Not automatic.
 ## Profile Storage
 
 ```yaml
-# ~/.mg-mode/projects/$SLUG/profile.yaml
+# ~/.conductor/projects/$SLUG/profile.yaml
 project: my-project
 profile: MVP
 domain: financial

@@ -101,7 +101,7 @@ bypass_record:
   session_id: <current session>
 ```
 
-Bypass records are append-only and stored in `~/.mg-mode/projects/$SLUG/governance-log.jsonl`.
+Bypass records are append-only and stored in `~/.conductor/projects/$SLUG/governance-log.jsonl`.
 
 ---
 
@@ -157,7 +157,7 @@ Route to: Tool Evaluator (agency-agents/testing/testing-tool-evaluator.md)
   4. Vendor stability — financial health, roadmap, exit strategy if vendor sunsets
   5. ROI — with sensitivity analysis
 
-Storage: ~/.mg-mode/projects/$SLUG/tool-assessments/
+Storage: ~/.conductor/projects/$SLUG/tool-assessments/
 
 Enforcement by profile:
   production-strict → REQUIRED (blocks adoption without assessment)

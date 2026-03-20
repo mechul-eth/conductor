@@ -80,7 +80,7 @@ session:
 
 By default, session state is stored as JSONL at:
 ```
-~/.mg-mode/sessions/<session_id>/state.jsonl
+~/.conductor/sessions/<session_id>/state.jsonl
 ```
 
 Each write appends a new line with the full state diff:
@@ -171,7 +171,7 @@ Before any multi-step operation:
 3. Checkpoint retention:
    - Keep last 5 checkpoints per session
    - Auto-delete older checkpoints on session close
-   - checkpoint files at: ~/.mg-mode/sessions/<session_id>/checkpoints/
+   - checkpoint files at: ~/.conductor/sessions/<session_id>/checkpoints/
 ```
 
 ---
@@ -181,7 +181,7 @@ Before any multi-step operation:
 On session close:
 1. Write final state to JSONL (or MCP memory)
 2. optimizer/ writes cost summary
-3. If observability opted in: write to `~/.mg-mode/analytics/session-usage.jsonl`
+3. If observability opted in: write to `~/.conductor/analytics/session-usage.jsonl`
 4. Merge gstack analytics (read-only from `~/.gstack/analytics/skill-usage.jsonl`)
 5. Clear active agent tokens from identity/
 6. Checkpoint files cleaned up (keep last snapshot for recovery)

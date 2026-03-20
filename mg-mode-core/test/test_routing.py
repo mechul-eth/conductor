@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MG_MODE Routing & Session Test Harness
+Conductor Routing & Session Test Harness
 =======================================
 Traces the conductor's routing algorithm against concrete user intents.
 Validates: role picking, fallback chains, NEXUS sizing, session state
@@ -182,7 +182,7 @@ def select_roles(intent, profile):
 
     scored.sort(key=lambda x: -x[1])
 
-    # Minimum role set (MG_MODE §Role Selection Algorithm)
+    # Minimum role set (Conductor §Role Selection Algorithm)
     if intent["complexity"] == "simple":
         selected = [scored[0][0]] if scored else []
     else:
@@ -591,7 +591,7 @@ def test_layer1_file_integrity():
         "gstack/ship/",
         "gstack/investigate/",
         "gstack/office-hours/",
-        "mg-mode-core/MG_MODE.md",
+        "mg-mode-core/CONDUCTOR.md",
         "mg-mode-core/conductor/README.md",
         "mg-mode-core/registry/README.md",
         "mg-mode-core/session/README.md",
@@ -614,7 +614,7 @@ def test_layer1_file_integrity():
 
 def main():
     print("=" * 70)
-    print("  MG_MODE ROUTING & SESSION TEST HARNESS")
+    print("  CONDUCTOR ROUTING & SESSION TEST HARNESS")
     print("=" * 70)
 
     tests = [
@@ -648,7 +648,7 @@ def main():
     print(f"\n  Total: {total_pass}/{total} tests passed")
 
     if total_pass == total:
-        print(f"\n  All tests passed. MG_MODE routing is robust.")
+        print(f"\n  All tests passed. Conductor routing is robust.")
     else:
         print(f"\n  {total - total_pass} test(s) failed. See details above.")
         sys.exit(1)

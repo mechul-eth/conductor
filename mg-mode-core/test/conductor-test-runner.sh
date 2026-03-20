@@ -6,7 +6,7 @@ set -e
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 TEST_DIR="$PROJECT_ROOT/mg-mode-core/test"
-SESSION_DIR="$HOME/.mg-mode/sessions"
+SESSION_DIR="$HOME/.conductor/sessions"
 TIMESTAMP=$(date -u +%Y%m%d_%H%M%S)
 TEST_LOG="$TEST_DIR/test-run_${TIMESTAMP}.log"
 
