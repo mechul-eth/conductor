@@ -1,6 +1,6 @@
-# MG_MODE.md Validation Framework
+# CONDUCTOR.md Validation Framework
 
-> Comprehensive test plan and tooling for validating MG_MODE orchestration logic before production deployment.
+> Comprehensive test plan and tooling for validating Conductor orchestration logic before production deployment.
 
 ---
 
@@ -110,7 +110,7 @@ fingerprints:
 ```json
 {
   "session_id": "sess-20260320-142345",
-  "project_name": "MG_MODE",
+  "project_name": "Conductor",
   "profile": "learning",
   "domain": "none",
   "scenario": "team iterating",
@@ -511,7 +511,7 @@ A production-strict project does a deep scan including compliance, security, and
 **Setup:**
 ```
 Profile: learning
-Task: MG_MODE added to an existing Node.js hobby project
+Task: Conductor added to an existing Node.js hobby project
 ```
 
 **Expected flow:**
@@ -532,7 +532,7 @@ Task: MG_MODE added to an existing Node.js hobby project
 **Setup:**
 ```
 Profile: MVP
-Task: MG_MODE added to an existing Node.js project with README, package.json, docs/
+Task: Conductor added to an existing Node.js project with README, package.json, docs/
 ```
 
 **Expected flow:**
@@ -562,7 +562,7 @@ Task: MG_MODE added to an existing Node.js project with README, package.json, do
 **Setup:**
 ```
 Profile: production-lite
-Task: MG_MODE added to an existing SaaS product with CI/CD and test suites
+Task: Conductor added to an existing SaaS product with CI/CD and test suites
 ```
 
 **Expected flow:**
@@ -585,7 +585,7 @@ Task: MG_MODE added to an existing SaaS product with CI/CD and test suites
 **Setup:**
 ```
 Profile: production-strict
-Task: MG_MODE added to a fintech platform preparing for launch, with compliance docs and security policies
+Task: Conductor added to a fintech platform preparing for launch, with compliance docs and security policies
 ```
 
 **Expected flow:**
@@ -669,9 +669,9 @@ existing_repo_bootstrap:
 
 ```bash
 #!/bin/bash
-# MG_MODE Validation Checklist
+# Conductor Validation Checklist
 
-echo "=== MG_MODE.md Validation Starting ==="
+echo "=== CONDUCTOR.md Validation Starting ==="
 echo "Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 # 1. Profile Selection
@@ -785,9 +785,9 @@ echo "Production ready when all 11 test groups pass."
 
 ## Gap Resolutions — All Implemented
 
-All 6 gaps identified during initial testing have been resolved and merged into MG_MODE.md:
+All 6 gaps identified during initial testing have been resolved and merged into CONDUCTOR.md:
 
-| Gap | Resolution | Location in MG_MODE.md |
+| Gap | Resolution | Location in CONDUCTOR.md |
 |-----|-----------|----------------------|
 | Profile fallback | Default to learning after 30s timeout | Activation section |
 | Capability fingerprints | Schema with 12 standard + 6 domain tags | After NEXUS Roles |
@@ -804,7 +804,7 @@ All verified by automated test suite (72/72 checks passing across 15 groups).
 
 ```
 MUST PASS (Blocking)
-[ ] Automated test suite passes (bash mg-mode-test-runner.sh)
+[ ] Automated test suite passes (bash conductor-test-runner.sh)
 [ ] All 6 manual scenarios trace correctly
 [ ] Business intelligence onboarding completes without error
 [ ] Session JSONL format stores/retrieves without data loss
@@ -826,7 +826,7 @@ NICE TO HAVE
 
 ## Version & Maintenance
 
-- **MG_MODE Version:** 1.0
+- **Conductor Version:** 1.0
 - **Test Framework Version:** 1.1
 - **Last Updated:** 2026-03-21
 - **Next Review:** After first 10 production sessions

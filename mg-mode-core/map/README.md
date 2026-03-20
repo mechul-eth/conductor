@@ -33,7 +33,7 @@
    → user-profile.md — expertise, preferences, calibrate explanation depth
    → market.md — competitors, positioning (when task is market-sensitive)
    → insights.md — prior key decisions, patterns (when task connects to history)
-   → Only inject sub-domains relevant to the current task (see MG_MODE.md STEP 4)
+   → Only inject sub-domains relevant to the current task (see CONDUCTOR.md STEP 4)
 4. Check for office-hours design doc at ~/.gstack/projects/$SLUG/*-design-*.md
    (match pattern used by gstack: `*-$BRANCH-design-*.md` preferred, `*-design-*.md` fallback)
    → If found: inject product purpose, target user, narrowest wedge, key constraints
@@ -140,7 +140,7 @@ Compare stated intent vs. actual delivery:
 
 ### Step 2: Build Handoff
 
-Produce the handoff schema (defined in MG_MODE.md) with all fields populated:
+Produce the handoff schema (defined in CONDUCTOR.md) with all fields populated:
 - metadata (from/to/phase/task_ref/priority/timestamp)
 - context (project, current state, relevant files, dependencies, constraints)
 - deliverable_request (what next role needs, acceptance criteria, references)

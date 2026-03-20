@@ -2,10 +2,10 @@
 
 ## Reporting a vulnerability
 
-If you find a security issue in MG_MODE's orchestration layer (`mg-mode-core/`), please do not open a public GitHub issue.
+If you find a security issue in Conductor's orchestration layer (`mg-mode-core/`), please do not open a public GitHub issue.
 
 Instead, use GitHub's private vulnerability reporting:
-**[Report a vulnerability](https://github.com/mechul-eth/MG_MODE/security/advisories/new)**
+**[Report a vulnerability](https://github.com/mechul-eth/conductor/security/advisories/new)**
 
 Or email the maintainer directly. Include:
 - What you found and where (file, section, line if applicable)
@@ -19,7 +19,7 @@ We'll acknowledge within 72 hours and aim to resolve valid reports within 14 day
 
 ## What belongs here vs. upstream
 
-MG_MODE is an orchestration layer built on top of three open-source libraries. Routing issues, governance bugs, and session logic vulnerabilities are **MG_MODE's responsibility** — report them here.
+Conductor is an orchestration layer built on top of three open-source libraries. Routing issues, governance bugs, and session logic vulnerabilities are **Conductor's responsibility** — report them here.
 
 Security issues in the underlying libraries should go to their maintainers:
 
@@ -44,7 +44,7 @@ Security issues in the underlying libraries should go to their maintainers:
 
 ### Out of scope
 
-- The AI model's behavior (hallucinations, bias) — that's a model-level concern, not MG_MODE
+- The AI model's behavior (hallucinations, bias) — that's a model-level concern, not Conductor
 - Security of the IDE environment (VS Code, Cursor, etc.)
 - Theoretical attacks with no practical exploitation path
 
@@ -58,7 +58,7 @@ We follow responsible disclosure. Please give us a reasonable window to fix the 
 
 ## Notes on AI-specific security
 
-MG_MODE is a markdown-based orchestration system that runs inside an AI coding agent. A few things worth knowing:
+Conductor is a markdown-based orchestration system that runs inside an AI coding agent. A few things worth knowing:
 
 - The orchestration runs inside the AI agent's context window — there is no server to attack
 - Prompt injection is a real concern in any AI system. If you find a way to make the conductor bypass its own governance gates via a crafted prompt, that's worth reporting

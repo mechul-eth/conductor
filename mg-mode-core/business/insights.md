@@ -9,7 +9,7 @@ Every significant observation is appended to the relevant section below with:
 - A confidence tag: `[user-stated]`, `[user-implied]`, `[system-generated]`, `[external]`
 - Context about why it matters or how it should influence future decisions
 
-MG_MODE reads this file during map/ pre-execution to inject relevant intelligence into role selection and prompt generation. The older the entry, the lower its routing weight — unless it's a foundational decision.
+Conductor reads this file during map/ pre-execution to inject relevant intelligence into role selection and prompt generation. The older the entry, the lower its routing weight — unless it's a foundational decision.
 
 ---
 

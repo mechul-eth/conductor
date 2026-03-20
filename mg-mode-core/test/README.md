@@ -1,19 +1,19 @@
-# MG_MODE Test Suite
+# Conductor Test Suite
 
-Validation framework for MG_MODE orchestration logic.
+Validation framework for Conductor orchestration logic.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| **mg-mode-test-runner.sh** | Automated test suite (15 groups, 72 checks) |
-| **MG_MODE_VALIDATION.md** | Validation framework: scenarios, schemas, manual checklist |
+| **conductor-test-runner.sh** | Automated test suite (15 groups, 72 checks) |
+| **CONDUCTOR_VALIDATION.md** | Validation framework: scenarios, schemas, manual checklist |
 | **test_routing.py** | Python routing test harness for role selection + session logic |
 
 ## Quick Start
 
 ```bash
-bash mg-mode-test-runner.sh
+bash conductor-test-runner.sh
 ```
 
 Output: color-coded pass/fail per check, final score out of 72.
@@ -33,7 +33,7 @@ Output: color-coded pass/fail per check, final score out of 72.
 | 7 | Quality Gates | 3 | Baseline/Security-Deep + cross-model review |
 | 8 | Layer 1 Override | 5 | Supreme policy + re-grounding template |
 | 9 | Investigation | 4 | 6 bug patterns + 3-strike hypothesis |
-| 10 | Layer 2 Components | 12 | All 11 component dirs + MG_MODE.md Brain file |
+| 10 | Layer 2 Components | 12 | All 11 component dirs + CONDUCTOR.md Brain file |
 | 11 | Session Format | 3 | JSONL schema + event types + concurrency |
 | 12 | Bypass Prevention | 2 | Enforcement levels + audit format |
 | 13 | Business Intelligence | 7 | Templates, confidence tags, approval rules, routing, profile depth, pre-ship review |
@@ -44,7 +44,7 @@ Output: color-coded pass/fail per check, final score out of 72.
 
 ## Validation Scenarios
 
-Eight manual scenarios in MG_MODE_VALIDATION.md:
+Eight manual scenarios in CONDUCTOR_VALIDATION.md:
 
 1. **Simple Task** — typo fix → 1 role, no NEXUS overhead
 2. **Compound Task** — payment gateway → 4 roles, dependency order, 3 handoffs
@@ -71,7 +71,7 @@ Covers ~28 of 156 registered roles. Validates role picking, fallback chains, NEX
 
 ```
 mg-mode-core/
-├── MG_MODE.md       ← Brain & policy
+├── CONDUCTOR.md       ← Brain & policy
 ├── identity/        ← Agent trust
 ├── graph/           ← Semantic code graph
 ├── map/             ← Pre/during/post mapper
@@ -87,4 +87,4 @@ mg-mode-core/
 
 ---
 
-*Test framework v1.2 — MG_MODE v1.0*
+*Test framework v1.2 — Conductor v1.0*

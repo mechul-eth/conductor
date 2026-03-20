@@ -13,7 +13,7 @@
 
 ## Core Guarantees
 
-1. **Single source of truth.** Every role MG_MODE can invoke is listed here with its capability fingerprint.
+1. **Single source of truth.** Every role Conductor can invoke is listed here with its capability fingerprint.
 2. **LLM-parseable.** Structured markdown tables that any LLM-based routing algorithm (map/) can read and select roles from without additional tooling.
 3. **Fallback chains.** Every role has a fallback — if unavailable, the next best option is declared.
 4. **NEXUS-aware.** Roles are tagged by tier for Micro/Sprint/Full composition sizing.
@@ -28,7 +28,7 @@ role:
   id: <filename without .md>
   name: <human-readable name>
   domain: <primary domain category>
-  path: <relative path from MG_MODE root>
+  path: <relative path from Conductor root>
   
   # Capability fingerprint (what map/ uses for routing)
   capabilities:

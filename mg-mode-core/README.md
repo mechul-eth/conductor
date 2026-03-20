@@ -5,12 +5,12 @@
 ## Architecture
 
 ```
-MG_MODE/
+Conductor/
 ├── agency-agents/         ← Layer 1: 156 agent roles (read-only)
 ├── gstack/                ← Layer 1: 21 workflow skills (read-only)
 ├── promptfoo/             ← Layer 1: 85+ validation plugins (read-only)
 └── mg-mode-core/          ← Layer 2: THIS — the orchestration brain
-    ├── MG_MODE.md         ← Master policy, routing rules, decision authority
+    ├── CONDUCTOR.md         ← Master policy, routing rules, decision authority
     ├── identity/          ← Agent identity, trust, entity deduplication
     ├── graph/             ← Semantic code graph for connected reasoning
     ├── map/               ← Pre/during/post execution mapper + prompt gen
@@ -28,12 +28,12 @@ MG_MODE/
 
 ```bash
 # 1. Clone
-git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git && cd MG_MODE
+git clone --recurse-submodules https://github.com/mechul-eth/conductor.git && cd Conductor
 
 # 2. Bootstrap (make executable first: chmod +x mg-mode-core/activation/bootstrap.sh)
 ./mg-mode-core/activation/bootstrap.sh
 
-# 3. Open your IDE agent and say: "Activate MG_MODE"
+# 3. Open your IDE agent and say: "Activate Conductor"
 # 4. Answer the 3 onboarding questions
 # 5. Start working
 ```
@@ -44,7 +44,7 @@ Supports: VS Code + Copilot, Claude Code, Cursor, Codex CLI, Windsurf, Aider, Ge
 
 | Component | Lines | Purpose |
 |-----------|-------|---------|
-| [MG_MODE.md](MG_MODE.md) | 777 | Supreme policy. Session lifecycle. Routing algorithm. Action classification. Loop safety. Business intelligence. Bypass prevention. |
+| [CONDUCTOR.md](CONDUCTOR.md) | 777 | Supreme policy. Session lifecycle. Routing algorithm. Action classification. Loop safety. Business intelligence. Bypass prevention. |
 | [identity/](identity/README.md) | 115 | Agent tokens. Authority scopes (6 levels). Entity resolution. Concurrent write safety. RBAC validation. |
 | [graph/](graph/README.md) | 147 | Silent initialization. 5 query types. Luhmann validation. OTel tracing. Degraded mode fallback. |
 | [map/](map/README.md) | 266 | 3-phase mapper (pre/during/post). 12 design cognitive patterns. ADR format. Workflow registry. Strategic reviews. |

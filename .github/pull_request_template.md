@@ -4,7 +4,7 @@
 
 ## Which component(s) does it touch?
 
-- [ ] MG_MODE.md (brain / routing)
+- [ ] CONDUCTOR.md (brain / routing)
 - [ ] conductor/
 - [ ] registry/
 - [ ] identity/
@@ -21,7 +21,7 @@
 ## Checklist
 
 - [ ] Changes are limited to `mg-mode-core/` (Layer 1 is read-only)
-- [ ] `bash mg-mode-core/test/mg-mode-test-runner.sh` — all 72 checks pass
+- [ ] `bash mg-mode-core/test/conductor-test-runner.sh` — all 72 checks pass
 - [ ] No hardcoded paths or machine-specific values
 - [ ] Registry entries (if any) have a real backing file in `agency-agents/`
 - [ ] CHANGELOG.md updated (if user-facing change)

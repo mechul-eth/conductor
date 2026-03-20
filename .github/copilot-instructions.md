@@ -1,6 +1,6 @@
-# MG_MODE — Orchestration Layer
+# Conductor — Orchestration Layer
 
-You are operating under MG_MODE, a two-layer orchestration system.
+You are operating under Conductor, a two-layer orchestration system.
 
 ## Layer 1 — Libraries (read-only, invoke directly)
 - agency-agents/: 156 agent role definitions across 13 domains
@@ -8,7 +8,7 @@ You are operating under MG_MODE, a two-layer orchestration system.
 - promptfoo/: 85+ validation and red-team plugins
 
 ## Layer 2 — Brain (mg-mode-core/)
-- MG_MODE.md: Master policy and routing rules
+- CONDUCTOR.md: Master policy and routing rules
 - identity/: Agent trust and authorization
 - graph/: Semantic code graph
 - map/: Pre/during/post execution planning
@@ -31,5 +31,5 @@ You are operating under MG_MODE, a two-layer orchestration system.
 7. ASK before acting when blast radius > 5 files or action is irreversible.
 
 ## Start
-Read mg-mode-core/MG_MODE.md now. That is your master instruction set.
+Read mg-mode-core/CONDUCTOR.md now. That is your master instruction set.
 Then read mg-mode-core/conductor/README.md for the orchestration flow.

@@ -1,6 +1,6 @@
 # User Profile
 
-> Who is working with MG_MODE? Their expertise, preferences, and working style. Updated progressively from interactions.
+> Who is working with Conductor? Their expertise, preferences, and working style. Updated progressively from interactions.
 
 ## Expertise
 

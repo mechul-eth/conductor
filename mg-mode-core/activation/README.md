@@ -11,7 +11,7 @@
 
 ## Core Guarantees
 
-1. **Any IDE.** MG_MODE works in every agent-capable IDE — no IDE lock-in.
+1. **Any IDE.** Conductor works in every agent-capable IDE — no IDE lock-in.
 2. **≤15 min first success.** From clone to working orchestration in 15 minutes or less.
 3. **Proactive disabled first.** Layer 1 proactive suggestions are disabled on activation so Layer 2 controls routing.
 4. **Graceful degradation.** Missing capabilities fall back to the next best option, never hard fail.
@@ -44,8 +44,8 @@
 
 ```
 STEP 1 — Clone (user)
-  git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git
-  cd MG_MODE
+  git clone --recurse-submodules https://github.com/mechul-eth/conductor.git
+  cd Conductor
 
 STEP 2 — Generate IDE instruction file (automatic)
   activation/ detects current IDE environment
@@ -97,9 +97,9 @@ Total: ≤15 minutes for Step 1–5.
 Every IDE instruction file follows this structure:
 
 ```markdown
-# MG_MODE — Orchestration Layer
+# Conductor — Orchestration Layer
 
-You are operating under MG_MODE, a two-layer orchestration system.
+You are operating under Conductor, a two-layer orchestration system.
 
 ## Layer 1 — Libraries (read-only, invoke directly)
 - agency-agents/: 156 agent role definitions across 13 domains
@@ -107,7 +107,7 @@ You are operating under MG_MODE, a two-layer orchestration system.
 - promptfoo/: 85+ validation and red-team plugins
 
 ## Layer 2 — Brain (mg-mode-core/)
-- MG_MODE.md: Master policy and routing rules
+- CONDUCTOR.md: Master policy and routing rules
 - identity/: Agent trust and authorization
 - graph/: Semantic code graph
 - map/: Pre/during/post execution planning
@@ -134,7 +134,7 @@ You are operating under MG_MODE, a two-layer orchestration system.
 - NEXUS Mode: {nexus_mode}
 - Proactive: false (Layer 2 controls routing)
 
-@mg-mode-core/MG_MODE.md
+@mg-mode-core/CONDUCTOR.md
 ```
 
 ---
@@ -226,7 +226,7 @@ When a feature is unavailable in a given IDE:
 | Browser automation | Skip browser-based QA | All without Playwright |
 | Session persistence via MCP | Fall back to JSONL file | IDEs without MCP |
 
-**Degradation is silent.** The user sees the same interface. MG_MODE adapts internally.
+**Degradation is silent.** The user sees the same interface. Conductor adapts internally.
 
 ---
 
@@ -241,7 +241,7 @@ For IDEs supporting MCP, activation/ configures custom tools:
       "command": "npx",
       "args": ["-y", "mg-mode-mcp-server"],
       "env": {
-        "MG_MODE_ROOT": "/path/to/MG_MODE"
+        "Conductor_ROOT": "/path/to/Conductor"
       }
     }
   }
@@ -261,7 +261,7 @@ Custom tools exposed via MCP:
 
 ```bash
 # Clone and enter
-git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git && cd MG_MODE
+git clone --recurse-submodules https://github.com/mechul-eth/conductor.git && cd Conductor
 
 # Bootstrap (generates IDE instruction file + runs onboarding)
 ./mg-mode-core/activation/bootstrap.sh
@@ -269,7 +269,7 @@ git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git && cd M
 # Or manually:
 # 1. Copy the IDE instruction file template above into your IDE's config
 # 2. Open a chat with your IDE's agent
-# 3. Say: "Read mg-mode-core/MG_MODE.md and activate MG_MODE"
+# 3. Say: "Read mg-mode-core/CONDUCTOR.md and activate Conductor"
 # 4. Answer the 3 onboarding questions
 # 5. Start working
 ```

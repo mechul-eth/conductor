@@ -1,17 +1,17 @@
 # Business Intelligence — Per-Project Knowledge Store
 
-> MG_MODE learns about your business, your market, and your product through every interaction. This directory holds that intelligence. You own it. It never leaves your repository.
+> Conductor learns about your business, your market, and your product through every interaction. This directory holds that intelligence. You own it. It never leaves your repository.
 
 ## What This Is
 
-This directory is a living knowledge base. As you work with MG_MODE, it captures and organizes what it learns about:
+This directory is a living knowledge base. As you work with Conductor, it captures and organizes what it learns about:
 
 - **You** — your expertise, preferences, how you work
 - **Your business** — what you're building, your model, your constraints
 - **Your market** — competitors, positioning, trends, risks
 - **Your product** — features, architecture, roadmap decisions
 
-This intelligence makes every future interaction smarter. Instead of starting from scratch on each prompt, MG_MODE knows your context.
+This intelligence makes every future interaction smarter. Instead of starting from scratch on each prompt, Conductor knows your context.
 
 ## Files
 
@@ -25,7 +25,7 @@ This intelligence makes every future interaction smarter. Instead of starting fr
 
 ## How It Starts
 
-MG_MODE detects whether it's being added to an existing codebase or a fresh project:
+Conductor detects whether it's being added to an existing codebase or a fresh project:
 
 - **Existing codebase:** Scans README, package configs, docs, and directory structure. Presents extracted intelligence as a batch for your approval. Fills business/ with what it learned — you correct or confirm.
 - **Fresh project:** Asks 3 onboarding questions (what, for whom, competitors). You answer in detail or skip.
@@ -55,14 +55,14 @@ business/
 
 ## Rules
 
-1. **You approve every write.** MG_MODE proposes changes. You confirm before they persist.
+1. **You approve every write.** Conductor proposes changes. You confirm before they persist.
 2. **Everything is tagged.** Each piece of intelligence has a source: `[user-stated]`, `[user-implied]`, `[system-generated]`, or `[external]`.
 3. **You can edit or delete anything.** These are your files. Change them anytime.
 4. **Nothing leaves this repo.** No external transmission. No cross-project sharing. Fully isolated.
 
 ## How It Helps
 
-When you say "build me a pricing page," MG_MODE already knows:
+When you say "build me a pricing page," Conductor already knows:
 - Your business model (from `core.md`)
 - Your competitors' pricing approach (from `market.md` or `competitors/`)
 - Your technical strengths and gaps (from `user-profile.md`)

@@ -1,6 +1,6 @@
 # Code of Conduct
 
-MG_MODE is a community project. We want it to be a place where people can contribute, ask questions, and learn without running into hostile or discouraging behavior.
+Conductor is a community project. We want it to be a place where people can contribute, ask questions, and learn without running into hostile or discouraging behavior.
 
 This code of conduct applies in all project spaces — GitHub issues, pull requests, discussions, and anywhere you're representing the project.
 
@@ -30,7 +30,7 @@ This code of conduct applies in all project spaces — GitHub issues, pull reque
 
 ## If something goes wrong
 
-If you see behavior that violates this code of conduct, or if you're on the receiving end of it, please email the maintainer directly or open a [GitHub Discussion](https://github.com/mechul-eth/MG_MODE/discussions) if you're comfortable doing so publicly.
+If you see behavior that violates this code of conduct, or if you're on the receiving end of it, please email the maintainer directly or open a [GitHub Discussion](https://github.com/mechul-eth/conductor/discussions) if you're comfortable doing so publicly.
 
 Reports are kept confidential. We will respond within 72 hours and explain what action was taken (or why no action was taken).
 

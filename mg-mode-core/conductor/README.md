@@ -10,7 +10,7 @@
 
 ## Core Guarantees
 
-1. **Single entry point.** All MG_MODE interactions start through conductor/.
+1. **Single entry point.** All Conductor interactions start through conductor/.
 2. **Mode-aware.** Supports plan, ask, execute, and review modes — routes differently for each.
 3. **Component orchestration.** Calls each component in the correct order. No component runs without conductor/ initiating it.
 4. **Loop safety.** Enforces max retries, escalation, and stop conditions globally.
@@ -394,7 +394,7 @@ Every conductor/ response includes a completion status:
 
 | Component | How conductor/ interacts |
 |-----------|--------------------------|
-| `MG_MODE.md` | conductor/ enforces all policies defined in the brain file |
+| `CONDUCTOR.md` | conductor/ enforces all policies defined in the brain file |
 | `session/` | conductor/ reads/writes session state at start and end of every task |
 | `activation/` | conductor/ triggers activation/ on first run |
 | `profiles/` | conductor/ loads profile config for every decision |
