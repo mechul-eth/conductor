@@ -55,7 +55,7 @@ Always include a recommended option. Always include at least 2 choices. The user
 
 **Rule:** Never author a role file, skill pattern, or validation plugin from scratch. Route to what exists. If nothing exists, suggest creating one via the MCP Builder pathway (activation/) and require user approval.
 
-### Layer 2 — mg-mode-core (this build)
+### Layer 2 — conductor-core (this build)
 
 12 original intelligence components that do not exist in Layer 1:
 
@@ -96,7 +96,7 @@ activation/ bootstraps environment
         → Retry graph init in background on next idle interval
   → identity/ registers agent pool with capability fingerprints
   → business/ intelligence bootstrap:
-      → Detect: existing codebase beyond mg-mode-core/?
+      → Detect: existing codebase beyond conductor-core/?
       → IF EXISTING CODEBASE:
           Scan README.md, package.json, configs, docs/ (read-only)
           → Present all extracted intelligence as a batch for approval
@@ -577,7 +577,7 @@ When Conductor is added to an existing codebase (not a fresh project), the busin
 
 ```
 STEP 0 — Detect existing codebase
-  → Check: Does the workspace contain existing source files beyond mg-mode-core/?
+  → Check: Does the workspace contain existing source files beyond conductor-core/?
       If yes → Run EXISTING REPO SCAN (below) BEFORE onboarding questions
       If no → Skip to standard onboarding (Step 1-3 above)
 

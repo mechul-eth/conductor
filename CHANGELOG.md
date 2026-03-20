@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Conductor (Layer 2 — mg-mode-core) are documented here.
+All notable changes to Conductor are documented here.
 
 Layer 1 components (agency-agents, gstack, promptfoo) maintain their own changelogs in their respective directories.
 
@@ -11,10 +11,9 @@ Layer 1 components (agency-agents, gstack, promptfoo) maintain their own changel
 - **SECURITY.md** — Vulnerability reporting policy, scope definition, AI-specific security notes
 - **Git submodule structure** — Layer 1 libraries (agency-agents, gstack, promptfoo) configured as git submodules pointing to their upstream repositories
 
-### Fixed
-- `mg-mode-core/README.md` — Updated CONDUCTOR.md line count to 777 (was 724)
-- `.github/pull_request_template.md` — Updated test command to `conductor-test-runner.sh` with 72 checks (was `test_routing.py` with 9)
-- `CONTRIBUTING.md` — Rewritten: plain language, accurate test instructions, added links to CODE_OF_CONDUCT, SECURITY
+### Improved
+- `CONTRIBUTING.md` — Rewritten with plain language and accurate test instructions
+- Documentation accuracy pass across all conductor-core component READMEs
 
 ### Layer 1 State (March 2026)
 - agency-agents: 158+ roles across 13 domains

@@ -70,7 +70,7 @@ Covers ~28 of 156 registered roles. Validates role picking, fallback chains, NEX
 ## Layer 2 Components Validated
 
 ```
-mg-mode-core/
+conductor-core/
 ├── CONDUCTOR.md       ← Brain & policy
 ├── identity/        ← Agent trust
 ├── graph/           ← Semantic code graph

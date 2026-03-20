@@ -1,4 +1,4 @@
-# mg-mode-core — Layer 2 Orchestration Brain
+# conductor-core — Layer 2 Orchestration Brain
 
 > 156 roles. 21 skills. 85+ validators. One brain that knows when to use each one.
 
@@ -9,7 +9,7 @@ Conductor/
 ├── agency-agents/         ← Layer 1: 156 agent roles (read-only)
 ├── gstack/                ← Layer 1: 21 workflow skills (read-only)
 ├── promptfoo/             ← Layer 1: 85+ validation plugins (read-only)
-└── mg-mode-core/          ← Layer 2: THIS — the orchestration brain
+└── conductor-core/          ← Layer 2: THIS — the orchestration brain
     ├── CONDUCTOR.md         ← Master policy, routing rules, decision authority
     ├── identity/          ← Agent identity, trust, entity deduplication
     ├── graph/             ← Semantic code graph for connected reasoning
@@ -30,8 +30,8 @@ Conductor/
 # 1. Clone
 git clone --recurse-submodules https://github.com/mechul-eth/conductor.git && cd Conductor
 
-# 2. Bootstrap (make executable first: chmod +x mg-mode-core/activation/bootstrap.sh)
-./mg-mode-core/activation/bootstrap.sh
+# 2. Bootstrap (make executable first: chmod +x conductor-core/activation/bootstrap.sh)
+./conductor-core/activation/bootstrap.sh
 
 # 3. Open your IDE agent and say: "Activate Conductor"
 # 4. Answer the 3 onboarding questions
@@ -93,7 +93,7 @@ Supports: VS Code + Copilot, Claude Code, Cursor, Codex CLI, Windsurf, Aider, Ge
 ## Key Design Decisions
 
 - **Markdown-first.** The "code" is markdown instruction files — the same format as Layer 1 agents and skills. This is an AI-native orchestrator, not a compiled binary.
-- **Layer 1 is read-only.** mg-mode-core/ never modifies agency-agents/, gstack/, or promptfoo/. It invokes them.
+- **Layer 1 is read-only.** conductor-core/ never modifies agency-agents/, gstack/, or promptfoo/. It invokes them.
 - **Profiles gate everything.** Budget caps, validation groups, governance gates, and domain plugins are all controlled by which profile you select.
 - **No hallucinated roles.** Every role must exist in registry/ (backed by a real file in agency-agents/). The routing engine cannot invent capabilities.
 - **Fallback chains.** Every role has a declared fallback. If your preferred architect is unavailable, the next best option is known in advance.

@@ -2,7 +2,7 @@
 # Conductor Bootstrap — generates IDE instruction file + runs first-time setup
 #
 # Usage:
-#   ./mg-mode-core/activation/bootstrap.sh [--ide <ide>]
+#   ./conductor-core/activation/bootstrap.sh [--ide <ide>]
 #
 # Supported IDEs: copilot, claude, cursor, codex, windsurf, aider, gemini
 # If --ide is omitted, auto-detects from environment.
@@ -10,7 +10,7 @@
 set -euo pipefail
 
 CONDUCTOR_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-CORE_DIR="$CONDUCTOR_ROOT/mg-mode-core"
+CORE_DIR="$CONDUCTOR_ROOT/conductor-core"
 STATE_DIR="$HOME/.conductor"
 
 # Colors (if terminal supports them)
@@ -76,7 +76,7 @@ You are operating under Conductor, a two-layer orchestration system.
 - gstack/: 21 workflow skills with binary entry points
 - promptfoo/: 85+ validation and red-team plugins
 
-## Layer 2 — Brain (mg-mode-core/)
+## Layer 2 — Brain (conductor-core/)
 - CONDUCTOR.md: Master policy and routing rules
 - identity/: Agent trust and authorization
 - graph/: Semantic code graph
@@ -100,8 +100,8 @@ You are operating under Conductor, a two-layer orchestration system.
 7. ASK before acting when blast radius > 5 files or action is irreversible.
 
 ## Start
-Read mg-mode-core/CONDUCTOR.md now. That is your master instruction set.
-Then read mg-mode-core/conductor/README.md for the orchestration flow.
+Read conductor-core/CONDUCTOR.md now. That is your master instruction set.
+Then read conductor-core/conductor/README.md for the orchestration flow.
 INSTRUCTIONS
 }
 
@@ -184,7 +184,7 @@ mkdir -p "$STATE_DIR/projects"
 info "Initialized state directory: $STATE_DIR"
 
 # --- Initialize Business Intelligence Directory ---
-BIZ_DIR="$CONDUCTOR_ROOT/mg-mode-core/business"
+BIZ_DIR="$CONDUCTOR_ROOT/conductor-core/business"
 BIZ_TEMPLATE="$CORE_DIR/business"
 if [ ! -d "$BIZ_DIR" ] || [ -z "$(ls -A "$BIZ_DIR" 2>/dev/null)" ]; then
   if [ -d "$BIZ_TEMPLATE" ]; then

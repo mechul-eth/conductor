@@ -49,7 +49,7 @@ Conductor/
 ├── agency-agents/      ← Layer 1: 156 agent role definitions (The Agency)
 ├── gstack/             ← Layer 1: 21 workflow skills + 12 binaries (gstack)
 ├── promptfoo/          ← Layer 1: 85+ validation plugins (Promptfoo)
-└── mg-mode-core/       ← Layer 2: The orchestration brain (this is what Conductor adds)
+└── conductor-core/       ← Layer 2: The orchestration brain (this is what Conductor adds)
     ├── CONDUCTOR.md      ← Master policy — routing rules, session lifecycle, action classification
     ├── conductor/      ← Single entry point — 4 modes, 15-step orchestration flow
     ├── registry/       ← 156 roles indexed with capability fingerprints + fallback chains
@@ -73,14 +73,14 @@ Conductor/
 # Clone with all Layer 1 libraries (recommended)
 git clone --recurse-submodules https://github.com/mechul-eth/conductor.git && cd Conductor
 
-# OR: Clone mg-mode-core only, then fetch Layer 1 on demand
+# OR: Clone conductor-core only, then fetch Layer 1 on demand
 # git clone https://github.com/mechul-eth/conductor.git && cd Conductor
 # git submodule update --init agency-agents gstack   # ~33MB
 # git submodule update --init promptfoo              # ~750MB — only needed for validation
 
 # Bootstrap (detects your IDE automatically, initializes submodules if needed)
-chmod +x mg-mode-core/activation/bootstrap.sh
-./mg-mode-core/activation/bootstrap.sh
+chmod +x conductor-core/activation/bootstrap.sh
+./conductor-core/activation/bootstrap.sh
 
 # Open your IDE agent and say:
 # "Activate Conductor"
@@ -136,22 +136,22 @@ Every interaction follows this flow:
 
 | Component | Purpose |
 |-----------|---------|
-| [CONDUCTOR.md](mg-mode-core/CONDUCTOR.md) | Master policy — routing algorithm, session lifecycle, action classification, loop safety, bypass prevention |
-| [conductor/](mg-mode-core/conductor/README.md) | Single entry point — 4 modes, 15-step orchestration flow, escalation protocol |
-| [registry/](mg-mode-core/registry/README.md) | Machine-readable catalog of all 156 roles with capability fingerprints and fallback chains |
-| [identity/](mg-mode-core/identity/README.md) | Agent tokens, 6 authority scope levels, entity resolution, concurrent write safety |
-| [graph/](mg-mode-core/graph/README.md) | Semantic code graph — silent init, 5 query types, OTel tracing, degraded mode fallback |
-| [map/](mg-mode-core/map/README.md) | 3-phase execution mapper (pre/during/post), 12 cognitive design patterns, ADR format |
-| [optimizer/](mg-mode-core/optimizer/README.md) | Budget thresholds (70/90/100%), profile-based caps, shadow testing, circuit breaker |
-| [governance/](mg-mode-core/governance/README.md) | 3-question gate (Need/Risk/Owner), 7-outcome matrix, bypass protocol |
-| [profiles/](mg-mode-core/profiles/README.md) | 4 profiles, 2 validation groups, 8 domain plugins, escalation rules |
-| [session/](mg-mode-core/session/README.md) | JSONL state store, optional MCP memory, adversarial write validation, checkpoint/rollback |
-| [activation/](mg-mode-core/activation/README.md) | Bootstrap for 7 IDEs, degraded mode spec, MCP Builder pathway |
+| [CONDUCTOR.md](conductor-core/CONDUCTOR.md) | Master policy — routing algorithm, session lifecycle, action classification, loop safety, bypass prevention |
+| [conductor/](conductor-core/conductor/README.md) | Single entry point — 4 modes, 15-step orchestration flow, escalation protocol |
+| [registry/](conductor-core/registry/README.md) | Machine-readable catalog of all 156 roles with capability fingerprints and fallback chains |
+| [identity/](conductor-core/identity/README.md) | Agent tokens, 6 authority scope levels, entity resolution, concurrent write safety |
+| [graph/](conductor-core/graph/README.md) | Semantic code graph — silent init, 5 query types, OTel tracing, degraded mode fallback |
+| [map/](conductor-core/map/README.md) | 3-phase execution mapper (pre/during/post), 12 cognitive design patterns, ADR format |
+| [optimizer/](conductor-core/optimizer/README.md) | Budget thresholds (70/90/100%), profile-based caps, shadow testing, circuit breaker |
+| [governance/](conductor-core/governance/README.md) | 3-question gate (Need/Risk/Owner), 7-outcome matrix, bypass protocol |
+| [profiles/](conductor-core/profiles/README.md) | 4 profiles, 2 validation groups, 8 domain plugins, escalation rules |
+| [session/](conductor-core/session/README.md) | JSONL state store, optional MCP memory, adversarial write validation, checkpoint/rollback |
+| [activation/](conductor-core/activation/README.md) | Bootstrap for 7 IDEs, degraded mode spec, MCP Builder pathway |
 
 ## Key Design Decisions
 
 - **Markdown-first.** No compiled code in the orchestration layer. The "code" is markdown instruction files — the same format your AI agent already understands natively.
-- **Layer 1 is read-only.** mg-mode-core never modifies agency-agents, gstack, or promptfoo. It routes to them, reads their patterns, and invokes their skills.
+- **Layer 1 is read-only.** conductor-core never modifies agency-agents, gstack, or promptfoo. It routes to them, reads their patterns, and invokes their skills.
 - **No hallucinated roles.** Every role must exist in the registry, backed by a real file in agency-agents/. The routing engine cannot invent capabilities that don't exist.
 - **Deterministic-first.** Start every task with the minimum viable role set. Expand only when a proven dependency requires it. Never activate roles speculatively.
 - **User override always available.** Any routing decision, profile selection, governance gate, or action classification can be overridden per task. Overrides are logged with timestamp and reason.
@@ -165,7 +165,7 @@ To report a security issue, see [SECURITY.md](SECURITY.md) — do not open a pub
 
 ## License
 
-Conductor's orchestration layer (mg-mode-core/) is [MIT licensed](LICENSE).
+Conductor's orchestration layer (conductor-core/) is [MIT licensed](LICENSE).
 
 Each Layer 1 project retains its own license:
 
