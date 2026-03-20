@@ -5,7 +5,7 @@
 If you find a security issue in MG_MODE's orchestration layer (`mg-mode-core/`), please do not open a public GitHub issue.
 
 Instead, use GitHub's private vulnerability reporting:
-**[Report a vulnerability](https://github.com/mustafaaksoz/MG_MODE/security/advisories/new)**
+**[Report a vulnerability](https://github.com/mechul-eth/MG_MODE/security/advisories/new)**
 
 Or email the maintainer directly. Include:
 - What you found and where (file, section, line if applicable)

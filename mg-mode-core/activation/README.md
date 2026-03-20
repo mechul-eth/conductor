@@ -44,7 +44,7 @@
 
 ```
 STEP 1 — Clone (user)
-  git clone --recurse-submodules https://github.com/mustafaaksoz/MG_MODE.git
+  git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git
   cd MG_MODE
 
 STEP 2 — Generate IDE instruction file (automatic)
@@ -261,7 +261,7 @@ Custom tools exposed via MCP:
 
 ```bash
 # Clone and enter
-git clone --recurse-submodules https://github.com/mustafaaksoz/MG_MODE.git && cd MG_MODE
+git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git && cd MG_MODE
 
 # Bootstrap (generates IDE instruction file + runs onboarding)
 ./mg-mode-core/activation/bootstrap.sh

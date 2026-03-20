@@ -71,10 +71,10 @@ MG_MODE/
 
 ```bash
 # Clone with all Layer 1 libraries (recommended)
-git clone --recurse-submodules https://github.com/mustafaaksoz/MG_MODE.git && cd MG_MODE
+git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git && cd MG_MODE
 
 # OR: Clone mg-mode-core only, then fetch Layer 1 on demand
-# git clone https://github.com/mustafaaksoz/MG_MODE.git && cd MG_MODE
+# git clone https://github.com/mechul-eth/MG_MODE.git && cd MG_MODE
 # git submodule update --init agency-agents gstack   # ~33MB
 # git submodule update --init promptfoo              # ~750MB — only needed for validation
 

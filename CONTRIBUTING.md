@@ -28,7 +28,7 @@ MG_MODE/
 
 ## Reporting a bug
 
-Open a [GitHub issue](https://github.com/mustafaaksoz/MG_MODE/issues) with:
+Open a [GitHub issue](https://github.com/mechul-eth/MG_MODE/issues) with:
 
 - What you were trying to do
 - What happened instead
