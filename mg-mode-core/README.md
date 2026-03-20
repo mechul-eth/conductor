@@ -28,7 +28,7 @@ MG_MODE/
 
 ```bash
 # 1. Clone
-git clone --recurse-submodules https://github.com/mustafaaksoz/MG_MODE.git && cd MG_MODE
+git clone --recurse-submodules https://github.com/mechul-eth/MG_MODE.git && cd MG_MODE
 
 # 2. Bootstrap (make executable first: chmod +x mg-mode-core/activation/bootstrap.sh)
 ./mg-mode-core/activation/bootstrap.sh

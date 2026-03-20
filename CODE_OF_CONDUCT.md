@@ -30,7 +30,7 @@ This code of conduct applies in all project spaces — GitHub issues, pull reque
 
 ## If something goes wrong
 
-If you see behavior that violates this code of conduct, or if you're on the receiving end of it, please open a [private security advisory](https://github.com/mustafaaksoz/MG_MODE/security/advisories/new) or email the maintainer directly.
+If you see behavior that violates this code of conduct, or if you're on the receiving end of it, please email the maintainer directly or open a [GitHub Discussion](https://github.com/mechul-eth/MG_MODE/discussions) if you're comfortable doing so publicly.
 
 Reports are kept confidential. We will respond within 72 hours and explain what action was taken (or why no action was taken).
 
