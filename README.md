@@ -178,3 +178,7 @@ Each Layer 1 project retains its own license:
 ## Acknowledgments
 
 Conductor wouldn't exist without the work of [Mike Sitarzewski](https://github.com/msitarzewski), [Garry Tan](https://github.com/garrytan), and the [Promptfoo](https://github.com/promptfoo) team. Their open-source projects are the foundation this orchestrator stands on. We built the brain — they built the body.
+
+---
+
+If Conductor saves your team time, [sponsoring development](https://github.com/sponsors/mechul-eth) keeps it maintained.
