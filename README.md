@@ -8,9 +8,13 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-enforced-blue.svg)](CODE_OF_CONDUCT.md)
 
-Conductor is a markdown-first orchestration layer that sits on top of three proven open-source libraries and adds deterministic routing, cost control, governance gates, and cross-role session state. It works inside your IDE — no server, no compiled binary, no runtime dependencies beyond your AI coding agent.
+👋 **Welcome.** Conductor is an open-source orchestration layer you drop into your repo so your AI coding agent stops freestyling and starts following a plan. If you've ever watched an agent happily invent a role, blow past a budget, or forget what it did 20 minutes ago — this is the fix.
+
+Conductor is **markdown-first**: no server, no compiled binary, no runtime dependencies beyond your AI agent. It sits on top of three proven open-source libraries and adds deterministic routing, cost control, governance gates, and cross-role session state — all in plain markdown your agent already understands.
 
 You describe what you want. Conductor figures out which specialist(s) should do it, how much it should cost, whether it needs a governance gate, and how to hand context from one role to the next — then watches the work, catches scope drift, and persists state so nothing gets lost between sessions.
+
+**New to Conductor?** Jump to [Quick Start](#quick-start). Want to see what a filled-in project looks like? Peek at [`examples/filled-business/`](examples/filled-business/). Questions? Open a [Discussion](https://github.com/mechul-eth/conductor/discussions) — we're a small, friendly community.
 
 ---
 
@@ -187,7 +191,7 @@ The [`examples/`](examples/) directory contains worked references:
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute. Please read the [Code of Conduct](CODE_OF_CONDUCT.md) first.
+PRs, issues, and discussions are all genuinely welcome — this is an early-stage community project and every bit of feedback helps. Start with [CONTRIBUTING.md](CONTRIBUTING.md), please read the [Code of Conduct](CODE_OF_CONDUCT.md), and don't worry about being polished — rough-edged ideas are great too.
 
 To report a security issue, see [SECURITY.md](SECURITY.md) — do not open a public issue.
 
