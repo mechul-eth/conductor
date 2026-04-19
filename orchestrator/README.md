@@ -25,7 +25,7 @@ orchestrator/
 │   ├── dispatch.sh        ← Role dispatch (parent-agent or CLI mode)
 │   ├── blocker.sh         ← 3-role consensus on blocked tasks
 │   ├── compact.sh         ← Auto-compact between tasks
-│   └── apple_grade.sh     ← World-standard quality check
+│   └── world_standard.sh     ← World-standard quality check
 ├── roles/                 ← Role manifest + generic fallback
 │   ├── manifest.json      ← Maps task role keys → conductor-core/business/roles/*.md (and external URLs)
 │   └── _generic.md        ← Fallback when no role matches
@@ -45,7 +45,7 @@ The state machine, gate matrix, dispatch contract, and lock protocol are documen
 | Locks | `lib/lock.sh` | Master lock prevents dual orchestrators; stale locks auto-break |
 | Dispatch | `lib/dispatch.sh` | Roles get a re-grounded envelope with the last 3 COMPLETED summaries |
 | Gates | `lib/gates.sh` | A=topology, B=build, C=test, D=e2e/security, E=sprint, G=a11y, H=acceptance, FINAL=release |
-| Apple-grade | `lib/apple_grade.sh` | World-standard quality reflection mandatory before COMPLETED |
+| world-class | `lib/world_standard.sh` | World-standard quality reflection mandatory before COMPLETED |
 | Consensus | `lib/blocker.sh` | 3 roles in parallel; 2-of-3 fix applied if convergent |
 
 ---
@@ -77,7 +77,7 @@ Per task, the `gates` array in `tasks.json` declares which gates run. Letters ar
 | C | test | Test-related tasks | `npm test`, `pytest`, etc. |
 | D | e2e / security | Integration tasks | curl health checks, RLS isolation, credential scan |
 | E | sprint final | End-of-sprint task | All sprint tasks COMPLETED |
-| F | apple-grade | Frontend tasks (S3+) | World-standard reflection answered |
+| F | world-class | Frontend tasks (S3+) | World-standard reflection answered |
 | G | accessibility | Frontend tasks | axe-core / Lighthouse a11y ≥ 90 |
 | H | acceptance | **Always (implicit)** | Every acceptance criterion in `tasks.json` reports `[✓]` |
 

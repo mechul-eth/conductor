@@ -205,7 +205,7 @@ $(echo "${task_json}" | jq -r '.acceptance_criteria[]?' | sed 's/^/- [ ] /')
 
 You MUST report on each criterion individually in section 8 below.
 
-## 6. APPLE-GRADE THINKING
+## 6. WORLD-CLASS THINKING
 
 Before declaring success, answer these:
 1. What would a top-tier team ship for this?
@@ -234,7 +234,7 @@ For each acceptance criterion, replace the leading marker with either:
 ACCEPTANCE_CRITERIA_REPORT:
 $(echo "${task_json}" | jq -r '.acceptance_criteria[]?' | sed 's/^/- [ ] /')
 
-APPLE_GRADE_REPORT:
+WORLD_STANDARD_REPORT:
 - Q1 (top-tier ship): <answer or "n/a (infrastructure)">
 - Q2 (CRUD lifecycle): <answer or "n/a">
 - Q3 (states):         <answer or "n/a">

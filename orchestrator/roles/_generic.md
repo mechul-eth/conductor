@@ -16,7 +16,7 @@ You obey `conductor-core/CONDUCTOR.md` unconditionally.
 ### Output Contract
 
 End with `TASK_RESULT: PASS` or `TASK_RESULT: FAIL` per the dispatch envelope
-contract. Include the ACCEPTANCE_CRITERIA_REPORT and APPLE_GRADE_REPORT
+contract. Include the ACCEPTANCE_CRITERIA_REPORT and WORLD_STANDARD_REPORT
 blocks the envelope requests.
 
 ### When to Upgrade

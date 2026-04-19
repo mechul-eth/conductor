@@ -8,7 +8,7 @@
 #   D_e2e            -- end-to-end checks
 #   D_security       -- credential scan, dep CVEs
 #   E_sprint_gate    -- all prior sprint tasks COMPLETED
-#   F_apple_grade    -- handled separately by apple_grade.sh
+#   F_world_standard    -- handled separately by world_standard.sh
 #   G_accessibility  -- a11y check
 #   H_acceptance     -- every acceptance criterion reports [✓]
 #   FINAL_RELEASE    -- final go-live gate
@@ -53,7 +53,7 @@ gate_run() {
     D_e2e)             gate_d_e2e "${task_json}" ;;
     D_security)        gate_d_security "${task_json}" ;;
     E_sprint_gate)     gate_e_sprint "${task_json}" ;;
-    F_apple_grade)     return 0 ;;  # handled separately
+    F_world_standard)     return 0 ;;  # handled separately
     G_accessibility)   gate_g_a11y "${task_json}" ;;
     H_acceptance)      gate_h_acceptance "${task_json}" ;;
     FINAL_RELEASE)     gate_final_release "${task_json}" ;;
@@ -81,7 +81,7 @@ gate_h_acceptance() {
   log_info "gate" "Gate H (acceptance criteria) for ${task_id}"
 
   local report
-  report="$(awk '/^ACCEPTANCE_CRITERIA_REPORT:/{flag=1; next} /^APPLE_GRADE_REPORT:|^TASK_RESULT:/{flag=0} flag' "${output_file}")"
+  report="$(awk '/^ACCEPTANCE_CRITERIA_REPORT:/{flag=1; next} /^WORLD_STANDARD_REPORT:|^TASK_RESULT:/{flag=0} flag' "${output_file}")"
   if [[ -z "${report}" ]]; then
     log_error "gate" "Gate H: no ACCEPTANCE_CRITERIA_REPORT block in ${output_file}"
     return 1

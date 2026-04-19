@@ -3,7 +3,7 @@
 > Deterministic-first AI orchestration. 156+ specialist roles, 21 workflow skills, 85+ validation plugins — one brain that routes, monitors, and hands off between them.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](VERSION)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](VERSION)
 [![CI](https://img.shields.io/github/actions/workflow/status/mechul-eth/conductor/ci.yml?branch=main&label=CI)](.github/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-enforced-blue.svg)](CODE_OF_CONDUCT.md)

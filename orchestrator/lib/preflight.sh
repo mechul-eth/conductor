@@ -53,7 +53,7 @@ preflight_deep() {
   fi
 
   # 4. lib/ scripts present
-  for f in log lock state notify gates dispatch blocker compact apple_grade; do
+  for f in log lock state notify gates dispatch blocker compact world_standard; do
     if [[ -f "${LIB_DIR}/${f}.sh" ]]; then
       log_info "preflight" "  lib/${f}.sh: present"
     else

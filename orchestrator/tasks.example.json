@@ -99,11 +99,11 @@
       "id": "5.1",
       "sprint": "S3",
       "title": "Polish -- a11y, performance, copy, edge cases",
-      "description": "Apple-grade polish pass. See conductor-core/phases/phase-5-polish.md.",
+      "description": "world-class polish pass. See conductor-core/phases/phase-5-polish.md.",
       "primary_role": "design",
       "collaborators": ["engineering-frontend", "engineering-backend", "testing"],
       "depends_on": ["4.1"],
-      "gates": ["A_topology", "B_build", "C_test", "G_accessibility", "F_apple_grade", "H_acceptance"],
+      "gates": ["A_topology", "B_build", "C_test", "G_accessibility", "F_world_standard", "H_acceptance"],
       "acceptance_criteria": [
         "a11y score above declared threshold on every shipped surface",
         "Performance budgets met",

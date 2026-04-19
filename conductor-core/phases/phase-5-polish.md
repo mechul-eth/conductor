@@ -4,7 +4,7 @@ Pipeline: {YOUR PIPELINE NAME} | Read conductor-core/canonical_prompt.md first.
 ══════════════════════════════════════════════════════════════════
 MISSION
 ══════════════════════════════════════════════════════════════════
-Make the product feel finished. Apple-grade thinking — what would a top-tier
+Make the product feel finished. world-class thinking — what would a top-tier
 team ship for this?
 
 Cover:

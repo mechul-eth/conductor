@@ -20,7 +20,7 @@
 #   - Minimum-role-set routing
 #   - No silent scope expansion
 #   - Auto-compact between tasks
-#   - Apple-grade thinking required before COMPLETED
+#   - world-class thinking required before COMPLETED
 #   - Every task ends with TASK_RESULT: PASS or FAIL
 # ============================================================================
 
@@ -62,8 +62,8 @@ source "${LIB_DIR}/dispatch.sh"
 source "${LIB_DIR}/blocker.sh"
 # shellcheck source=lib/compact.sh
 source "${LIB_DIR}/compact.sh"
-# shellcheck source=lib/apple_grade.sh
-source "${LIB_DIR}/apple_grade.sh"
+# shellcheck source=lib/world_standard.sh
+source "${LIB_DIR}/world_standard.sh"
 
 # ---------------------------------------------------------------------------
 # Command: preflight
@@ -309,10 +309,10 @@ execute_task() {
       continue
     fi
 
-    # Apple-grade thinking gate
-    if ! apple_grade_check "${task_json}"; then
-      log_warn "execute" "Apple-grade check identified gaps -- auto-extending task"
-      state_append "${task_id}" "PARTIAL" "${attempt}" "{\"reason\":\"apple_grade_gap\"}" "World-standard gaps found"
+    # world-class thinking gate
+    if ! world_standard_check "${task_json}"; then
+      log_warn "execute" "world-class check identified gaps -- auto-extending task"
+      state_append "${task_id}" "PARTIAL" "${attempt}" "{\"reason\":\"world_standard_gap\"}" "World-standard gaps found"
       ((attempt++))
       continue
     fi

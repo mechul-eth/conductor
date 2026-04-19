@@ -4,6 +4,31 @@ All notable changes to Conductor are documented here.
 
 Layer 1 components (agency-agents, gstack, promptfoo) maintain their own changelogs in their respective directories.
 
+## [1.3.0] — 2026-04-19
+
+Branding hygiene pass. The quality-reflection gate and related prose/identifiers no longer reference a specific company's name — they read as "world-class" / "world-standard" instead. The underlying behaviour of the gate is identical.
+
+### Breaking
+
+- The gate key `F_apple_grade` is renamed to `F_world_standard`. Any `tasks.json` in a downstream repo that listed `F_apple_grade` in its `gates` array must be updated to `F_world_standard` before upgrading. The example file `orchestrator/tasks.example.json` has been updated in-place so new adopters pick up the new name by default.
+- The helper script `orchestrator/lib/apple_grade.sh` is renamed to `orchestrator/lib/world_standard.sh` (exports `world_standard_check` instead of `apple_grade_check`). The preflight module list and `conductor.sh` source line have both been updated accordingly.
+- The dispatch-envelope template section header `APPLE_GRADE_REPORT:` is renamed to `WORLD_STANDARD_REPORT:`. The gate parser in `gates.sh` reads the new header, and `dispatch.sh` emits it. Roles that produced the old header in their outputs must update their templates.
+
+### Changed
+
+- Prose references to "Apple-grade thinking / quality" across README, `orchestrator/README.md`, phase-5 polish doc, and the generic role template rewritten to "world-class" phrasing. The meaning is preserved: ship something a top-tier design team would be proud of.
+- Log tag `[apple]` replaced with `[world]` in runtime log lines from the quality-reflection gate.
+
+### Migration
+
+For a repo already using Conductor 1.2.x:
+
+1. Rename any `F_apple_grade` entry in your `tasks.json` to `F_world_standard`.
+2. If you have custom dispatch templates, replace `APPLE_GRADE_REPORT:` with `WORLD_STANDARD_REPORT:`.
+3. Re-run `make preflight` to confirm the new module list loads cleanly.
+
+No behavioural changes — the gate still checks for a reflection block, still fails the task if the block is missing, and still escalates gaps the same way.
+
 ## [1.2.0] — 2026-04-19
 
 Friends-and-community-ready preview release. Big structural pass: the brain stays the same; the per-project contract layer gets much richer so a team can clone, fill in a few files, and have a fully wired Conductor without writing any code.
@@ -22,7 +47,7 @@ Friends-and-community-ready preview release. Big structural pass: the brain stay
 - `conductor-core/activation/SCAN_CHECKLIST.md` — what the agent reads from an existing repo to pre-populate `business/`.
 - `conductor-core/activation/vscode/` — first-class VS Code kit: copilot-instructions, settings, extensions, tasks, mcp.example.
 - `conductor-core/activation/{claude-code,cursor,codex,windsurf,aider,gemini-cli}/` — per-IDE adapters.
-- `orchestrator/` — optional bash runtime for unattended multi-phase pipelines. `conductor.sh` entry, `lib/*.sh` helpers (log, lock, state, notify, preflight, gates, dispatch, blocker, compact, apple_grade), `roles/manifest.json` (internal local files + external URL references — both first-class), `tasks.example.json`, per-task gate hooks.
+- `orchestrator/` — optional bash runtime for unattended multi-phase pipelines. `conductor.sh` entry, `lib/*.sh` helpers (log, lock, state, notify, preflight, gates, dispatch, blocker, compact, world_standard), `roles/manifest.json` (internal local files + external URL references — both first-class), `tasks.example.json`, per-task gate hooks.
 - `.github/workflows/ci.yml` — shellcheck, JSON validation, markdown lint, orphan-prevention check.
 - `.github/workflows/release.yml` — tag-triggered GitHub Releases driven by `VERSION` + `CHANGELOG.md`.
 - `.github/CODEOWNERS`, `.github/ISSUE_TEMPLATE/config.yml`.
