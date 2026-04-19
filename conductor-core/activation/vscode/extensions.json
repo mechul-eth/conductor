@@ -1,0 +1,15 @@
+{
+  "// Conductor — VS Code recommended extensions": "Minimum required: Copilot + Copilot Chat. Others are quality-of-life.",
+  "recommendations": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    "timonwong.shellcheck",
+    "foxundermoon.shell-format",
+    "redhat.vscode-yaml",
+    "ms-vscode.makefile-tools",
+    "EditorConfig.EditorConfig"
+  ],
+  "unwantedRecommendations": []
+}

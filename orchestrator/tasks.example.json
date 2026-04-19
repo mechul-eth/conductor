@@ -1,0 +1,141 @@
+{
+  "$schema": "./schema/tasks.schema.json",
+  "version": "1.0.0",
+  "description": "Example task queue. Copy to tasks.json and edit for your pipeline. Typical sources: conductor-core/phases/, a sprint plan, a migration runbook.",
+  "global_constraints": {
+    "max_retries_per_task": 3,
+    "max_consensus_rounds": 3,
+    "dispatch_timeout_secs": 1800,
+    "consensus_timeout_secs": 1800
+  },
+  "tasks": [
+    {
+      "id": "1.1",
+      "sprint": "S1",
+      "title": "Preflight + scope map",
+      "description": "Run preflight checks, inventory the design source of truth, build the codebase map, list deletion candidates. No application code changes. See conductor-core/phases/phase-0-preflight-and-scope-map.md.",
+      "primary_role": "project-management",
+      "collaborators": ["engineering-architect", "engineering-frontend", "engineering-backend", "testing"],
+      "depends_on": [],
+      "gates": ["A_topology", "H_acceptance"],
+      "acceptance_criteria": [
+        "All preflight CHECK items PASS",
+        "Design inventory written to session/{project}/phase-0-design-inventory.md",
+        "Codebase map written to session/{project}/phase-0-codebase-map.md",
+        "Deletion candidates written and surfaced to user",
+        "No application code modified"
+      ],
+      "rollback_command": "(none -- phase 0 writes no application code)"
+    },
+    {
+      "id": "1.2",
+      "sprint": "S1",
+      "title": "Parity / scaffold baseline",
+      "description": "Bring the project to structural parity with the design source of truth. Every visible unit has a rendered counterpart in the live app. No business logic wiring. See conductor-core/phases/phase-1-parity-scaffold.md.",
+      "primary_role": "engineering-frontend",
+      "collaborators": ["engineering-architect", "design", "testing"],
+      "depends_on": ["1.1"],
+      "gates": ["A_topology", "B_build", "C_test", "H_acceptance"],
+      "acceptance_criteria": [
+        "Every design-inventory row has MATCH or SCAFFOLDED status",
+        "Every scaffolded unit has empty/loading/error/success states",
+        "Visual regression snapshot updated",
+        "Baseline smoke tests pass"
+      ],
+      "rollback_command": "git revert <scaffold-commit>"
+    },
+    {
+      "id": "2.1",
+      "sprint": "S2",
+      "title": "Wire P0 write paths",
+      "description": "Every P0 write action lands in canonical storage. Auth + validation + error handling on each. See conductor-core/phases/phase-2-write-paths.md.",
+      "primary_role": "engineering-backend",
+      "collaborators": ["engineering-architect", "engineering-frontend", "engineering-database", "engineering-security", "testing"],
+      "depends_on": ["1.2"],
+      "gates": ["A_topology", "B_build", "C_test", "D_security", "H_acceptance"],
+      "acceptance_criteria": [
+        "Every P0 write lands in canonical storage",
+        "Every write has auth + validation + error handling",
+        "Every write has at least 1 integration test",
+        "No Phase 1 regression"
+      ],
+      "rollback_command": "git revert <writes-commit> && apply rollback migration if DB-affecting"
+    },
+    {
+      "id": "3.1",
+      "sprint": "S2",
+      "title": "Replace mocks with real reads",
+      "description": "Every mock read replaced with a real query with supporting index. See conductor-core/phases/phase-3-read-paths.md.",
+      "primary_role": "engineering-backend",
+      "collaborators": ["engineering-frontend", "engineering-database", "testing"],
+      "depends_on": ["2.1"],
+      "gates": ["A_topology", "B_build", "C_test", "H_acceptance"],
+      "acceptance_criteria": [
+        "Every mock read replaced with a real query",
+        "Every read has supporting indexes within latency budget",
+        "Empty-set states still render",
+        "No Phase 1 or Phase 2 regression"
+      ],
+      "rollback_command": "git revert <reads-commit>"
+    },
+    {
+      "id": "4.1",
+      "sprint": "S3",
+      "title": "Realtime + triggers + audit",
+      "description": "Wire realtime updates, triggers for write side effects, audit trail. See conductor-core/phases/phase-4-realtime-and-triggers.md.",
+      "primary_role": "engineering-backend",
+      "collaborators": ["engineering-architect", "engineering-frontend", "engineering-database", "engineering-security", "testing"],
+      "depends_on": ["3.1"],
+      "gates": ["A_topology", "B_build", "C_test", "D_e2e", "D_security", "H_acceptance"],
+      "acceptance_criteria": [
+        "Every realtime surface converges within budget",
+        "Every trigger fires, retries correctly, DLQs on permanent failure",
+        "Audit trail records declared events with PII redacted",
+        "No prior-phase regression"
+      ],
+      "rollback_command": "Disable feature flag + git revert"
+    },
+    {
+      "id": "5.1",
+      "sprint": "S3",
+      "title": "Polish -- a11y, performance, copy, edge cases",
+      "description": "Apple-grade polish pass. See conductor-core/phases/phase-5-polish.md.",
+      "primary_role": "design",
+      "collaborators": ["engineering-frontend", "engineering-backend", "testing"],
+      "depends_on": ["4.1"],
+      "gates": ["A_topology", "B_build", "C_test", "G_accessibility", "F_apple_grade", "H_acceptance"],
+      "acceptance_criteria": [
+        "a11y score above declared threshold on every shipped surface",
+        "Performance budgets met",
+        "Copy review complete -- no placeholders",
+        "Edge cases covered with tests"
+      ],
+      "rollback_command": "git revert <polish-commit>"
+    },
+    {
+      "id": "6.1",
+      "sprint": "S4",
+      "title": "Release gate",
+      "description": "Walk every prior phase's exit criteria, run every declared gate, verify rollback plan, issue verdict. See conductor-core/phases/phase-6-release-gate.md.",
+      "primary_role": "project-management",
+      "collaborators": ["engineering-architect", "engineering-devops", "engineering-security", "testing", "product"],
+      "depends_on": ["5.1"],
+      "gates": ["A_topology", "B_build", "C_test", "D_e2e", "D_security", "G_accessibility", "H_acceptance", "FINAL_RELEASE"],
+      "acceptance_criteria": [
+        "Every prior phase still GREEN",
+        "Every declared gate passes",
+        "Rollback plan reviewed + sign-off",
+        "On-call rota for first 24h confirmed",
+        "Release-readiness report written",
+        "Verdict issued: GO_LIVE_GREEN | GO_LIVE_YELLOW | GO_LIVE_RED"
+      ],
+      "rollback_command": "See release-readiness-intelligence/rollback-and-fallback-governance.md"
+    }
+  ],
+  "sprints": [
+    { "sprint_id": "S1", "tasks": ["1.1", "1.2"] },
+    { "sprint_id": "S2", "tasks": ["2.1", "3.1"] },
+    { "sprint_id": "S3", "tasks": ["4.1", "5.1"] },
+    { "sprint_id": "S4", "tasks": ["6.1"] }
+  ]
+}

@@ -1,0 +1,16 @@
+# Conductor — funding sources
+# Replace usernames with your own when you fork or rename the repo.
+github: [mechul-eth]
+# Other supported platforms (uncomment as needed):
+# patreon: username
+# open_collective: project
+# ko_fi: username
+# tidelift: npm/package-name
+# liberapay: username
+# issuehunt: username
+# otechie: username
+# lfx_crowdfunding: project-name
+# polar: username
+# buy_me_a_coffee: username
+# thanks_dev: username
+# custom: ['https://example.com/sponsor']

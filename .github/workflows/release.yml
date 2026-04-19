@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    name: Tag → GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read VERSION file
+        id: version
+        run: echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
+
+      - name: Verify tag matches VERSION
+        run: |
+          tag="${GITHUB_REF##refs/tags/v}"
+          file="$(cat VERSION)"
+          if [ "$tag" != "$file" ]; then
+            echo "Tag v$tag does not match VERSION file ($file)"
+            exit 1
+          fi
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          if [ -f CHANGELOG.md ]; then
+            awk -v ver="${{ steps.version.outputs.version }}" '
+              /^## /{ if (found) exit; if (index($0, ver)) found=1; next }
+              found
+            ' CHANGELOG.md > RELEASE_NOTES.md
+          else
+            echo "Release v${{ steps.version.outputs.version }}" > RELEASE_NOTES.md
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE_NOTES.md
+          draft: false
+          prerelease: false

@@ -1,0 +1,16 @@
+{
+  "// Conductor — MCP server config example": "Rename to mcp.json and fill in connections you want Copilot Chat to access. MCP is optional — Conductor works without any MCP servers.",
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${workspaceFolder}"],
+      "// note": "Lets Copilot Chat read project files via MCP. Useful but not required — Copilot already has file access in VS Code."
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PAT}" },
+      "// note": "Optional. Gives Conductor read access to your GitHub issues, PRs, and metadata."
+    }
+  }
+}

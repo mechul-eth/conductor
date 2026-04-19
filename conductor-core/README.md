@@ -11,18 +11,27 @@ Conductor/
 ├── promptfoo/             ← Layer 1: 85+ validation plugins (read-only)
 └── conductor-core/          ← Layer 2: THIS — the orchestration brain
     ├── CONDUCTOR.md         ← Master policy, routing rules, decision authority
-    ├── identity/          ← Agent identity, trust, entity deduplication
-    ├── graph/             ← Semantic code graph for connected reasoning
-    ├── map/               ← Pre/during/post execution mapper + prompt gen
-    ├── optimizer/         ← Cost routing, circuit breaker, shadow testing
-    ├── governance/        ← Automation value/risk/ownership gate
-    ├── profiles/          ← Stage-aware onboarding + budget profiles
-    ├── session/           ← Cross-role state persistence
-    ├── activation/        ← Universal IDE bootstrap kit
-    ├── registry/          ← Machine-readable role catalog (156 roles + 21 skills)
-    ├── conductor/         ← Unified entry point + orchestration flow
-    └── business/          ← Per-project business intelligence
+    ├── canonical_prompt.md  ← Optional pipeline overlay (when running multi-phase delivery)
+    ├── identity/            ← Agent identity, trust, entity deduplication
+    ├── graph/               ← Semantic code graph for connected reasoning
+    ├── map/                 ← Pre/during/post execution mapper + prompt gen
+    ├── optimizer/           ← Cost routing, circuit breaker, shadow testing
+    ├── governance/          ← Automation value/risk/ownership gate
+    ├── profiles/            ← Stage-aware onboarding + budget profiles
+    ├── session/             ← Cross-role state persistence
+    ├── activation/          ← Universal IDE bootstrap kit (VS Code first-class + others)
+    ├── registry/            ← Machine-readable role catalog
+    ├── conductor/           ← Unified entry point + mode triggers
+    ├── phases/              ← Phase templates for multi-phase pipelines
+    └── business/            ← Per-project business intelligence + role definitions
+        ├── core.md, market.md, user-profile.md, insights.md  ← The baseline
+        ├── ROUTING.md, FRAME_CONTROL_ALGORITHM.md           ← Wiring contracts
+        ├── roles/                                            ← Internal team roles
+        ├── segments/, research/                              ← Optional growth
+        └── {api|backend|frontend|database|integration|ai-usage|release-readiness}-intelligence/
 ```
+
+The optional **`orchestrator/`** sibling directory at the root contains the bash runtime — `conductor.sh`, `lib/`, `roles/manifest.json` — for unattended, multi-phase pipeline execution. It's optional. Most teams use Conductor purely as markdown context inside their IDE.
 
 ## Quick Start
 
@@ -55,8 +64,9 @@ Supports: VS Code + Copilot, Claude Code, Cursor, Codex CLI, Windsurf, Aider, Ge
 | [activation/](activation/README.md) | 288 | 9 IDE environments. Bootstrap script. Existing repo auto-scan. Degraded mode spec. MCP Builder pathway. ≤15-min first success. |
 | [registry/](registry/README.md) | 370 | 156 roles with capability fingerprints. 21 workflow skills. Fallback chains. NEXUS mode composition. |
 | [conductor/](conductor/README.md) | 337 | 4 modes (plan/ask/execute/review). 15-step orchestration flow. Business context injection. Loop safety. Escalation protocol. |
-| [business/](business/README.md) | 259 | Per-project intelligence. User profile, business model, market data. Auto-learn from existing repos. Confidence tagging. Layer 1 role integration. |
-| **Total** | **3,268** | |
+| [business/](business/README.md) | progressive | Per-project intelligence. User profile, business model, market data, internal team roles, and 7 intelligence domains (api / backend / frontend / database / integration / ai-usage / release-readiness). Auto-learn from existing repos. Wiring contract in `business/ROUTING.md`; orphan prevention in `business/FRAME_CONTROL_ALGORITHM.md`. |
+| [phases/](phases/README.md) | 7 phases | Phase templates (preflight/scope-map → parity → write paths → read paths → realtime → polish → release gate). Used when `canonical_prompt.md` declares a multi-phase pipeline. |
+| `canonical_prompt.md` | optional | Pipeline overlay — declares scope, source-of-truth hierarchy, phase pipeline, and pipeline-specific constraints. Skip for ad-hoc work. |
 
 ## How It Works
 

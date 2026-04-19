@@ -1,0 +1,26 @@
+# Cursor rules — Conductor
+
+## Activation
+If `conductor-core/business/core.md` has no user-stated content → first activation.
+Follow `conductor-core/activation/FIRST_RUN.md`.
+
+## Every session
+Load in order:
+1. `conductor-core/CONDUCTOR.md`
+2. `conductor-core/business/ROUTING.md`
+3. `conductor-core/business/core.md`, `user-profile.md`, `insights.md`
+4. `conductor-core/conductor/mode-triggers.json`
+
+Route per `CONDUCTOR.md` §ROUTING POLICY. Emit role announcements per
+`conductor-core/conductor/README.md` §Role Transition Format.
+
+## Contract
+- Deterministic-first. Minimum-role-set.
+- No silent scope expansion. Surface → user confirms.
+- Max 3 retries. Escalate on stuck.
+- Every task ends with DONE / DONE_WITH_CONCERNS / BLOCKED / NEEDS_CONTEXT / INCIDENT.
+
+## Safety
+Never print credentials. Redact `sk-*`, `eyJ*`, `dp.pt.*`.
+No destructive ops without SURFACE-TO-USER: rm -rf, DROP TABLE, TRUNCATE,
+git push --force, git reset --hard, kubectl delete, docker rm -f.

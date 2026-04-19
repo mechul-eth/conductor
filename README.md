@@ -3,6 +3,8 @@
 > Deterministic-first AI orchestration. 156+ specialist roles, 21 workflow skills, 85+ validation plugins — one brain that routes, monitors, and hands off between them.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](VERSION)
+[![CI](https://img.shields.io/github/actions/workflow/status/mechul-eth/conductor/ci.yml?branch=main&label=CI)](.github/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-enforced-blue.svg)](CODE_OF_CONDUCT.md)
 
@@ -93,7 +95,9 @@ chmod +x conductor-core/activation/bootstrap.sh
 # Start working — Conductor handles routing from here
 ```
 
-**Supported IDEs:** VS Code + GitHub Copilot, Claude Code, Cursor, Codex CLI, Windsurf, Aider, Gemini CLI.
+**Supported IDEs:** VS Code + GitHub Copilot (first-class), Claude Code, Cursor, Codex CLI, Windsurf, Aider, Gemini CLI. Per-IDE kits live under [conductor-core/activation/](conductor-core/activation/README.md).
+
+**First activation — the important part.** On first activation, Conductor starts with zero knowledge of your project. It follows the runbook at [conductor-core/activation/FIRST_RUN.md](conductor-core/activation/FIRST_RUN.md): scans your repo, asks the gaps, wires [business/ROUTING.md](conductor-core/business/ROUTING.md) to your team, and writes the [business/](conductor-core/business/README.md) directory with your approval. No industry is assumed; Conductor learns from you.
 
 ## How It Works
 
@@ -146,7 +150,11 @@ Every interaction follows this flow:
 | [governance/](conductor-core/governance/README.md) | 3-question gate (Need/Risk/Owner), 7-outcome matrix, bypass protocol |
 | [profiles/](conductor-core/profiles/README.md) | 4 profiles, 2 validation groups, 8 domain plugins, escalation rules |
 | [session/](conductor-core/session/README.md) | JSONL state store, optional MCP memory, adversarial write validation, checkpoint/rollback |
-| [activation/](conductor-core/activation/README.md) | Bootstrap for 7 IDEs, degraded mode spec, MCP Builder pathway |
+| [activation/](conductor-core/activation/README.md) | First-run runbook, question bank, scan checklist, VS Code first-class kit + 6 other IDE adapters |
+| [phases/](conductor-core/phases/README.md) | 7 phase templates for multi-phase pipelines (preflight → parity → writes → reads → realtime → polish → release) |
+| [business/](conductor-core/business/README.md) | Per-project intelligence — core, market, user-profile, insights, **ROUTING.md** (the wiring contract), **FRAME_CONTROL_ALGORITHM.md** (orphan prevention), **roles/** (internal team), and **7 intelligence domains** (api, backend, frontend, database, integration, ai-usage, release-readiness) |
+| [canonical_prompt.md](conductor-core/canonical_prompt.md) | Optional pipeline overlay for multi-phase deliveries |
+| [orchestrator/](orchestrator/README.md) | **Optional** bash runtime — `conductor.sh`, `lib/*.sh` (state, locks, gates, dispatch, consensus), role manifest with internal + external resolution, per-task gate hooks. Use when you want unattended multi-phase pipelines. |
 
 ## Key Design Decisions
 
@@ -156,6 +164,26 @@ Every interaction follows this flow:
 - **Deterministic-first.** Start every task with the minimum viable role set. Expand only when a proven dependency requires it. Never activate roles speculatively.
 - **User override always available.** Any routing decision, profile selection, governance gate, or action classification can be overridden per task. Overrides are logged with timestamp and reason.
 - **No silent scope expansion.** Any action beyond what you asked for is surfaced as a recommendation — never executed automatically. gstack's "Completeness Principle" is intercepted and shown to you, not auto-applied.
+
+## Known Limitations
+
+Honest about what Conductor doesn't do yet:
+
+- **No hosted runtime.** The bash runtime at `orchestrator/` runs on your machine (or your CI box). There's no managed cloud version.
+- **English-first prompts.** Internal prompts and templates are English. They work with non-English content in role outputs, but the instruction text isn't translated yet.
+- **No metrics dashboard.** The runtime writes JSONL state and structured logs — you can grep/pipe them, but there's no built-in UI.
+- **Cross-session cost tracking is best-effort.** `optimizer/` budgets are per-session; rolling weekly/monthly totals require your own aggregation.
+- **No automatic drift detection across Conductor versions.** If you update `conductor-core/` in an active pipeline, changes to `CONDUCTOR.md` don't force re-verification of in-flight tasks. Pause before upgrading mid-pipeline.
+- **Windows support is untested.** The bash runtime is developed on macOS + Linux. WSL should work; native Windows via Git Bash is not tested.
+- **Role library discovery is manual.** External roles (agency-agents style) plug in via `orchestrator/roles/manifest.json` — there's no auto-discovery.
+
+If any of these are a blocker for you, open an issue or discussion with your use case — some are already on the roadmap.
+
+## Examples
+
+The [`examples/`](examples/) directory contains worked references:
+
+- [`examples/filled-business/`](examples/filled-business/) — a fully filled-in `business/` for a fictional B2B SaaS. Use it as a reference to see what "done with onboarding" looks like.
 
 ## Contributing
 

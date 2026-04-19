@@ -4,6 +4,62 @@ All notable changes to Conductor are documented here.
 
 Layer 1 components (agency-agents, gstack, promptfoo) maintain their own changelogs in their respective directories.
 
+## [1.2.0] — 2026-04-19
+
+Friends-and-community-ready preview release. Big structural pass: the brain stays the same; the per-project contract layer gets much richer so a team can clone, fill in a few files, and have a fully wired Conductor without writing any code.
+
+### Added
+
+- `conductor-core/canonical_prompt.md` — optional pipeline overlay template. Declares scope, source-of-truth hierarchy, and phase sequence for multi-phase deliveries. Skip for ad-hoc work.
+- `conductor-core/phases/` — 7 generic phase templates (preflight/scope-map, parity/scaffold, write paths, read paths, realtime/triggers, polish, release gate) + phase README.
+- `conductor-core/business/ROUTING.md` — the role-to-context routing contract. Teams edit this to wire Conductor to their team.
+- `conductor-core/business/FRAME_CONTROL_ALGORITHM.md` — deterministic frame lock + orphan-prevention rule.
+- `conductor-core/business/roles/` — 14 generic role templates + `_template.md` + `README.md`. Internal roles live here.
+- `conductor-core/business/{api|backend|frontend|database|integration|ai-usage|release-readiness}-intelligence/` — 7 intelligence domain READMEs with foundation templates. Each is a first-class control-plane dependency at release time.
+- `conductor-core/business/segments/` and `conductor-core/business/research/` — growth templates.
+- `conductor-core/activation/FIRST_RUN.md` — step-by-step runbook the IDE agent follows on first activation: scan repo, ask the gaps, wire `ROUTING.md`, write `business/` with user approval.
+- `conductor-core/activation/QUESTIONS.md` — onboarding question bank (profile-aware limits).
+- `conductor-core/activation/SCAN_CHECKLIST.md` — what the agent reads from an existing repo to pre-populate `business/`.
+- `conductor-core/activation/vscode/` — first-class VS Code kit: copilot-instructions, settings, extensions, tasks, mcp.example.
+- `conductor-core/activation/{claude-code,cursor,codex,windsurf,aider,gemini-cli}/` — per-IDE adapters.
+- `orchestrator/` — optional bash runtime for unattended multi-phase pipelines. `conductor.sh` entry, `lib/*.sh` helpers (log, lock, state, notify, preflight, gates, dispatch, blocker, compact, apple_grade), `roles/manifest.json` (internal local files + external URL references — both first-class), `tasks.example.json`, per-task gate hooks.
+- `.github/workflows/ci.yml` — shellcheck, JSON validation, markdown lint, orphan-prevention check.
+- `.github/workflows/release.yml` — tag-triggered GitHub Releases driven by `VERSION` + `CHANGELOG.md`.
+- `.github/CODEOWNERS`, `.github/ISSUE_TEMPLATE/config.yml`.
+- `VERSION` (0.1.0) and `.editorconfig`.
+
+### Changed
+
+- `conductor-core/README.md` — diagram + component table expanded to reflect new phases, canonical_prompt, intelligence domains, and the optional `orchestrator/` sibling.
+- `conductor-core/business/README.md` — rewritten as a plug-in kit with a 7-step "how to plug Conductor in" guide and a reading order by role.
+- `conductor-core/activation/README.md` — front-linked to runbook + question bank + scan checklist + per-IDE directories. Zero-assumptions principle stated explicitly.
+- `.github/pull_request_template.md` — checklist updated to cover `business/`, `phases/`, `orchestrator/`.
+
+### Principles reinforced
+
+- **Zero assumptions.** Conductor ships without any knowledge of the project's industry or terminology. It learns from the user via the first-run runbook.
+- **Internal and external roles are both first-class.** Internal in `business/roles/`. External via URL in `orchestrator/roles/manifest.json`. Both obey Conductor policies unconditionally.
+- **No orphans.** Every new artifact must be referenced from a `README`, `ROUTING.md`, and at least one gate. CI enforces this.
+
+### Launch polish
+
+- `Makefile` at the repo root with shortcuts for `preflight`, `start`, `resume`, `status`, `halt`, `validate-state`, `lint`, `lint-bash`, `lint-json`, `lint-md`, `orphan-check`, `test`, `version`. `SHELL := /bin/bash` so process substitution works.
+- `examples/filled-business/` — fully filled-in `business/` for a fictional B2B SaaS (Northwind Notes). Newcomers see what "done with onboarding" looks like.
+- `.github/FUNDING.yml` — enables the GitHub Sponsors button.
+- README badges: License, Version, CI, PRs Welcome, Code of Conduct.
+- README "Known Limitations" section — honest about what Conductor doesn't do (no hosted runtime, English-first prompts, no metrics dashboard, etc.).
+- CI markdown-lint is now strict (removed `|| true`) and covers `examples/**/*.md`.
+- `bootstrap.sh` now copies from the per-IDE adapter directories instead of an inline stale template; for VS Code it also copies `.vscode/{settings,extensions,tasks}.json` and for Aider it copies `.aider.conf.yml`.
+
+### Bug fixes (post-audit)
+
+- `VERSION` corrected from `0.1.0` → `1.2.0` (was a regression vs. existing `1.1.0`).
+- Root `.github/copilot-instructions.md` overwritten with the current adapter content (was stale).
+- Dispatch envelope no longer emits `[ OR x]` literal in the output schema; now emits `[ ]` with an explicit instruction to replace with `[✓]` or `[x]`.
+- `gate_h_acceptance` cleaned up — removed dead variable and pointless `awk '{print}'`; failure log now prints the offending criterion lines.
+
+---
+
 ## [1.1.0] — 2026-03-21
 
 ### Added

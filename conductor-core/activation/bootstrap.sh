@@ -105,29 +105,42 @@ Then read conductor-core/conductor/README.md for the orchestration flow.
 INSTRUCTIONS
 }
 
-# --- Write IDE-Specific File ---
+# --- Map IDE to (target file, source adapter file) ---
+# The IDE adapter directories under conductor-core/activation/{ide}/ are the
+# source of truth for instruction content. Bootstrap copies from there so
+# the runbook (FIRST_RUN.md), question bank, and scan checklist references
+# stay in sync. The inline generate_instructions() function is kept as a
+# last-resort fallback if the adapter file is missing.
+declare TARGET ADAPTER_SRC
 case "$IDE" in
   copilot)
     TARGET="$CONDUCTOR_ROOT/.github/copilot-instructions.md"
+    ADAPTER_SRC="$CORE_DIR/activation/vscode/copilot-instructions.md"
     mkdir -p "$(dirname "$TARGET")"
     ;;
   claude)
     TARGET="$CONDUCTOR_ROOT/CLAUDE.md"
+    ADAPTER_SRC="$CORE_DIR/activation/claude-code/CLAUDE.md"
     ;;
   cursor)
     TARGET="$CONDUCTOR_ROOT/.cursorrules"
+    ADAPTER_SRC="$CORE_DIR/activation/cursor/.cursorrules"
     ;;
   codex)
     TARGET="$CONDUCTOR_ROOT/AGENTS.md"
+    ADAPTER_SRC="$CORE_DIR/activation/codex/AGENTS.md"
     ;;
   windsurf)
     TARGET="$CONDUCTOR_ROOT/.windsurfrules"
+    ADAPTER_SRC="$CORE_DIR/activation/windsurf/.windsurfrules"
     ;;
   aider)
     TARGET="$CONDUCTOR_ROOT/CONVENTIONS.md"
+    ADAPTER_SRC="$CORE_DIR/activation/aider/CONVENTIONS.md"
     ;;
   gemini)
     TARGET="$CONDUCTOR_ROOT/GEMINI.md"
+    ADAPTER_SRC="$CORE_DIR/activation/gemini-cli/GEMINI.md"
     ;;
   *)
     error "Unsupported IDE: $IDE"
@@ -142,8 +155,33 @@ if [[ -f "$TARGET" ]]; then
   cp "$TARGET" "${TARGET}.bak"
 fi
 
-generate_instructions > "$TARGET"
-info "Wrote instruction file: $TARGET"
+if [[ -f "$ADAPTER_SRC" ]]; then
+  cp "$ADAPTER_SRC" "$TARGET"
+  info "Copied adapter from $ADAPTER_SRC -> $TARGET"
+else
+  warn "Adapter source missing ($ADAPTER_SRC) -- using inline fallback"
+  generate_instructions > "$TARGET"
+  info "Wrote inline instruction file: $TARGET"
+fi
+
+# Note: Aider also benefits from .aider.conf.yml at the repo root.
+if [[ "$IDE" == "aider" ]] && [[ -f "$CORE_DIR/activation/aider/.aider.conf.yml" ]] && [[ ! -f "$CONDUCTOR_ROOT/.aider.conf.yml" ]]; then
+  cp "$CORE_DIR/activation/aider/.aider.conf.yml" "$CONDUCTOR_ROOT/.aider.conf.yml"
+  info "Copied .aider.conf.yml to repo root"
+fi
+
+# VS Code also benefits from the .vscode/ workspace files.
+if [[ "$IDE" == "copilot" ]] && [[ -d "$CORE_DIR/activation/vscode" ]]; then
+  mkdir -p "$CONDUCTOR_ROOT/.vscode"
+  for f in settings.json extensions.json tasks.json; do
+    src="$CORE_DIR/activation/vscode/$f"
+    dst="$CONDUCTOR_ROOT/.vscode/$f"
+    if [[ -f "$src" ]] && [[ ! -f "$dst" ]]; then
+      cp "$src" "$dst"
+      info "Copied .vscode/$f"
+    fi
+  done
+fi
 
 # --- Initialize Layer 1 Submodules (if in a git repo and not yet initialized) ---
 if git -C "$CONDUCTOR_ROOT" rev-parse --is-inside-work-tree &>/dev/null; then

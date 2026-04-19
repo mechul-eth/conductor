@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  shellcheck:
+    name: Shellcheck (bash)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Lint orchestrator/conductor.sh
+        run: shellcheck -S warning orchestrator/conductor.sh
+
+      - name: Lint orchestrator/lib/*.sh
+        run: shellcheck -S warning orchestrator/lib/*.sh
+
+      - name: Lint conductor-core/activation/bootstrap.sh (if present)
+        run: |
+          if [ -f conductor-core/activation/bootstrap.sh ]; then
+            shellcheck -S warning conductor-core/activation/bootstrap.sh
+          fi
+
+  json-validate:
+    name: JSON validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Validate JSON files
+        run: |
+          set -e
+          for f in $(find . -name "*.json" \
+              -not -path "./agency-agents/*" \
+              -not -path "./gstack/*" \
+              -not -path "./promptfoo/*" \
+              -not -path "./node_modules/*"); do
+            echo "Validating: $f"
+            jq empty "$f"
+          done
+
+  markdown-lint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+
+      - name: Lint markdown
+        run: |
+          markdownlint \
+            'conductor-core/**/*.md' \
+            'orchestrator/**/*.md' \
+            'examples/**/*.md' \
+            '*.md' \
+            --ignore conductor-core/test \
+            --disable MD013 MD033 MD041 MD024 MD036 MD040 MD034 MD029
+
+  orphan-check:
+    name: Orphan-prevention check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Verify every business/ file is referenced
+        run: |
+          set -e
+          # Every file in business/ (other than .md templates and READMEs) must be
+          # referenced from at least one of: business/README.md, business/ROUTING.md,
+          # business/FRAME_CONTROL_ALGORITHM.md, or another business/ file.
+          missing=0
+          while IFS= read -r f; do
+            base="$(basename "$f")"
+            # Skip files that are themselves indices
+            case "$base" in
+              README.md|ROUTING.md|FRAME_CONTROL_ALGORITHM.md|_template.md|.gitkeep) continue ;;
+            esac
+            # Search for the file name in the rest of business/
+            if ! grep -rq --exclude="$base" "$base" conductor-core/business/ ; then
+              echo "ORPHAN: $f is not referenced from anywhere in business/"
+              missing=$((missing + 1))
+            fi
+          done < <(find conductor-core/business -type f -name "*.md")
+          if [ "$missing" -gt 0 ]; then
+            echo "Orphan check FAIL: $missing file(s) not referenced. Add them to ROUTING.md or business/README.md."
+            exit 1
+          fi
+          echo "Orphan check PASS"

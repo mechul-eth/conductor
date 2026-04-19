@@ -1,0 +1,21 @@
+# Runtime artifacts -- never commit these
+state.jsonl
+state.jsonl.bak
+state.jsonl.bak.*
+tasks.json
+
+# Runtime workspace
+checkpoints/*
+!checkpoints/.gitkeep
+logs/*
+!logs/.gitkeep
+locks/*
+!locks/.gitkeep
+blockers/*
+!blockers/.gitkeep
+
+# Auto-generated prompts from any extraction script
+prompts/task_*.md
+
+# Reports
+release-report-*.md

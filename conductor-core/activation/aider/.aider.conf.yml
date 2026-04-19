@@ -1,0 +1,22 @@
+# Aider config — Conductor
+# Place at repo root.
+
+# Load Conductor brain + conventions on every session
+read:
+  - conductor-core/CONDUCTOR.md
+  - conductor-core/business/ROUTING.md
+  - conductor-core/business/core.md
+  - conductor-core/business/user-profile.md
+  - conductor-core/business/insights.md
+  - conductor-core/conductor/mode-triggers.json
+
+# Per-session conventions
+conventions: CONVENTIONS.md
+
+# Safety defaults aligned with Conductor policy
+auto-commits: false
+dirty-commits: false
+
+# Lint / test on completion
+auto-lint: true
+auto-test: false

@@ -4,26 +4,23 @@
 
 ## Which component(s) does it touch?
 
-- [ ] CONDUCTOR.md (brain / routing)
-- [ ] conductor/
-- [ ] registry/
-- [ ] identity/
-- [ ] graph/
-- [ ] map/
-- [ ] optimizer/
-- [ ] governance/
-- [ ] profiles/
-- [ ] session/
-- [ ] activation/
-- [ ] test/
-- [ ] Top-level docs (README, CONTRIBUTING, CHANGELOG)
+- [ ] `CONDUCTOR.md` (brain / routing policy)
+- [ ] `conductor/` (mode triggers, orchestration flow)
+- [ ] `registry/` / `identity/` / `graph/` / `map/` / `optimizer/` / `governance/` / `profiles/` / `session/`
+- [ ] `activation/` (incl. VS Code + other IDE kits)
+- [ ] `business/` (ROUTING, FRAME_CONTROL, roles/, intelligence domains, segments, research)
+- [ ] `phases/` / `canonical_prompt.md`
+- [ ] `orchestrator/` (runtime — conductor.sh, lib/, roles/, gates/)
+- [ ] `.github/` (CI, templates)
+- [ ] Top-level docs (README, CONTRIBUTING, CHANGELOG, CODE_OF_CONDUCT, SECURITY)
 
 ## Checklist
 
-- [ ] Changes are limited to `conductor-core/` (Layer 1 is read-only)
-- [ ] `bash conductor-core/test/conductor-test-runner.sh` — all 72 checks pass
+- [ ] Changes are limited to `conductor-core/`, `orchestrator/`, or root docs — Layer 1 (`agency-agents/`, `gstack/`, `promptfoo/`) is read-only
 - [ ] No hardcoded paths or machine-specific values
-- [ ] Registry entries (if any) have a real backing file in `agency-agents/`
+- [ ] Orphan-prevention check passes per `conductor-core/business/FRAME_CONTROL_ALGORITHM.md` (every new artifact is referenced from a README, `ROUTING.md`, and a gate)
+- [ ] `shellcheck` clean on any bash scripts touched (orchestrator/conductor.sh, lib/*.sh)
+- [ ] Any new JSON files validate with `jq empty <file>`
 - [ ] CHANGELOG.md updated (if user-facing change)
 
 ## Context

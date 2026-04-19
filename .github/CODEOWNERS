@@ -1,0 +1,18 @@
+# CODEOWNERS — Conductor
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/customizing-your-repository/about-code-owners
+
+# Default owners for all paths
+* @mechul-eth
+
+# Conductor brain — needs careful review
+conductor-core/CONDUCTOR.md @mechul-eth
+conductor-core/business/ROUTING.md @mechul-eth
+conductor-core/business/FRAME_CONTROL_ALGORITHM.md @mechul-eth
+
+# Runtime — bash safety matters
+orchestrator/conductor.sh @mechul-eth
+orchestrator/lib/ @mechul-eth
+
+# CI / release
+.github/ @mechul-eth
+VERSION @mechul-eth

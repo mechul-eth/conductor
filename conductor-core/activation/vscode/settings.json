@@ -1,0 +1,60 @@
+{
+  "// Conductor — VS Code workspace settings": "Tuned for the Conductor workflow. Override per-machine in user settings.",
+
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.welcomeMessage": "never",
+  "github.copilot.editor.enableAutoCompletions": true,
+
+  "files.associations": {
+    "AGENTS.md": "markdown",
+    "CLAUDE.md": "markdown",
+    "GEMINI.md": "markdown",
+    "*.cursorrules": "markdown",
+    ".windsurfrules": "markdown",
+    "CONDUCTOR.md": "markdown",
+    "canonical_prompt.md": "markdown"
+  },
+
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "conductor-core/session/**/*.jsonl.bak": true
+  },
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.venv": true,
+    "promptfoo/**": true,
+    "agency-agents/**": true,
+    "gstack/**": true
+  },
+
+  "editor.formatOnSave": false,
+  "editor.rulers": [100, 120],
+  "editor.wordWrap": "off",
+
+  "markdown.preview.fontSize": 14,
+  "markdown.preview.lineHeight": 1.6,
+
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+
+  "[shellscript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  }
+}

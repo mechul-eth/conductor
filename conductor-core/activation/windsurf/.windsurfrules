@@ -1,0 +1,20 @@
+# Windsurf rules — Conductor
+
+## Activation
+If `conductor-core/business/core.md` is empty → follow `conductor-core/activation/FIRST_RUN.md`.
+
+## Every session
+Load `conductor-core/CONDUCTOR.md`, `conductor-core/business/ROUTING.md`,
+`business/core.md`, `user-profile.md`, `insights.md`,
+`conductor/mode-triggers.json`.
+
+Route per CONDUCTOR.md §ROUTING POLICY. Announce role transitions per
+`conductor/README.md` §Role Transition Format.
+
+## Contract
+Deterministic-first. Minimum-role-set. No silent scope expansion.
+Max 3 retries. End every task with DONE / DONE_WITH_CONCERNS /
+BLOCKED / NEEDS_CONTEXT / INCIDENT.
+
+## Safety
+Redact credentials. No destructive commands without SURFACE-TO-USER.

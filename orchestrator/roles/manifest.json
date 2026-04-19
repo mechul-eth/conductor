@@ -1,0 +1,109 @@
+{
+  "$schema": "./schema/manifest.schema.json",
+  "version": "1.0.0",
+  "description": "Maps conductor task role keys to role definitions. Local canonical files in conductor-core/business/roles/ take precedence (internal roles). external_url references (external roles) are supplemental context. Per CONDUCTOR.md: both obey local policies unconditionally.",
+  "resolution_order": ["local_canonical", "external_url", "stub"],
+  "roles": {
+    "engineering-architect": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-architect.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns system design + ADRs"
+    },
+    "engineering-backend": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-backend.md",
+      "supplemental": ["../../conductor-core/business/roles/engineering-architect.md"],
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns server-side implementation"
+    },
+    "engineering-frontend": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-frontend.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns client-side implementation"
+    },
+    "engineering-database": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-database.md",
+      "supplemental": ["../../conductor-core/business/roles/engineering-architect.md"],
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns schema + migrations"
+    },
+    "engineering-security": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-security.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns threat model + security review"
+    },
+    "engineering-devops": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-devops.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns deploy pipelines + on-call"
+    },
+    "engineering-ai": {
+      "local_canonical": "../../conductor-core/business/roles/engineering-ai.md",
+      "external_url": "",
+      "priority": "P1",
+      "notes": "Owns AI/LLM integration + eval harnesses"
+    },
+    "product": {
+      "local_canonical": "../../conductor-core/business/roles/product.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns scope + prioritization + specs"
+    },
+    "strategy": {
+      "local_canonical": "../../conductor-core/business/roles/strategy.md",
+      "external_url": "",
+      "priority": "P1",
+      "notes": "Owns positioning + long-range planning"
+    },
+    "design": {
+      "local_canonical": "../../conductor-core/business/roles/design.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns UX + visual design + design system"
+    },
+    "marketing": {
+      "local_canonical": "../../conductor-core/business/roles/marketing.md",
+      "external_url": "",
+      "priority": "P1"
+    },
+    "sales": {
+      "local_canonical": "../../conductor-core/business/roles/sales.md",
+      "external_url": "",
+      "priority": "P1"
+    },
+    "support": {
+      "local_canonical": "../../conductor-core/business/roles/support.md",
+      "external_url": "",
+      "priority": "P1"
+    },
+    "testing": {
+      "local_canonical": "../../conductor-core/business/roles/testing.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns test strategy + reality checks"
+    },
+    "project-management": {
+      "local_canonical": "../../conductor-core/business/roles/project-management.md",
+      "external_url": "",
+      "priority": "P0",
+      "notes": "Owns coordination + status + retro"
+    }
+  },
+  "fallback_role": "_generic",
+  "external_role_library_example": {
+    "description": "Example: to add an external role library like agency-agents, copy an entry and fill in external_url with the GitHub or hosted markdown URL. Conductor will append it as supplemental context.",
+    "example_entry": {
+      "engineering-rapid-prototyper": {
+        "local_canonical": "",
+        "external_url": "https://github.com/{org}/{repo}/blob/main/engineering/engineering-rapid-prototyper.md",
+        "priority": "P2",
+        "notes": "External role -- inherits Conductor policies unconditionally"
+      }
+    }
+  }
+}

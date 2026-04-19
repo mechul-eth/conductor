@@ -53,13 +53,23 @@ The more specific you are, the faster it gets fixed.
 ## Submitting a pull request
 
 1. Fork the repo and create a branch from `main`
-2. Make changes in `conductor-core/` only — do not modify Layer 1 directories
-3. Run the test suite:
+2. Make changes in `conductor-core/`, `orchestrator/`, or root docs — Layer 1 directories (`agency-agents/`, `gstack/`, `promptfoo/`) are read-only
+3. Run local checks:
    ```bash
-   bash conductor-core/test/conductor-test-runner.sh
+   # Bash linting (optional; CI runs this)
+   shellcheck -S warning orchestrator/conductor.sh orchestrator/lib/*.sh
+
+   # JSON validation
+   find . -name "*.json" -not -path "./agency-agents/*" -not -path "./gstack/*" \
+     -not -path "./promptfoo/*" -not -path "./node_modules/*" \
+     -exec jq empty {} \;
+
+   # Existing conductor-core test suite (if present)
+   [ -f conductor-core/test/conductor-test-runner.sh ] && \
+     bash conductor-core/test/conductor-test-runner.sh
    ```
-   All 72 checks must pass.
-4. Open a PR against `main` with a clear description of what changed and why
+4. Run the orphan-prevention check before you commit: every new artifact under `conductor-core/business/` must be referenced from `README.md`, `ROUTING.md`, and at least one gate. CI enforces this.
+5. Open a PR against `main` with a clear description of what changed and why
 
 The PR template will walk you through the checklist.
 
@@ -71,7 +81,11 @@ The PR template will walk you through the checklist.
 - New registry entries with a real backing file in `agency-agents/`
 - Profile improvements (budget thresholds, validation group tuning)
 - Documentation improvements in `conductor-core/`
-- IDE compatibility fixes in `activation/bootstrap.sh`
+- IDE activation improvements (VS Code kit, per-IDE adapters in `conductor-core/activation/`)
+- New or improved business-intelligence templates (`business/roles/`, `business/{domain}-intelligence/`)
+- New phase templates or phase improvements in `conductor-core/phases/`
+- Orchestrator runtime improvements (`orchestrator/lib/`, new gate hooks in `orchestrator/gates/`)
+- External-role library bridges in `orchestrator/roles/manifest.json`
 - Test coverage additions in `conductor-core/test/`
 
 ## What we don't accept

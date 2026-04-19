@@ -2,6 +2,18 @@
 
 > Any IDE. Any model. ≤15 minutes to first success. One instruction file, zero manual config.
 
+## Quick Links (start here)
+
+- **First-run runbook** — `FIRST_RUN.md` — the step-by-step the agent follows the first time someone activates Conductor.
+- **Question bank** — `QUESTIONS.md` — onboarding questions, profile-aware.
+- **Scan checklist** — `SCAN_CHECKLIST.md` — what the agent reads from the existing repo.
+- **VS Code first-class** — `vscode/README.md` — Copilot Chat + workspace settings + tasks.
+- **Other IDEs** — `claude-code/`, `cursor/`, `codex/`, `windsurf/`, `aider/`, `gemini-cli/`.
+
+## Zero-Assumptions Principle
+
+Conductor ships with no knowledge of the project's industry, business model, or terminology. It learns these from the user during first activation, via the runbook + scan + question bank. Industry lists shown anywhere are menu choices, not silent defaults. Never invent the business.
+
 ## Design Advisors (Layer 1 — do not rebuild)
 - `gstack/SKILL.md` — skill discovery, proactive mode toggle
 - `gstack/bin/gstack-config` — config persistence (proactive, telemetry, update-checks)

@@ -7,14 +7,19 @@
 .DS_Store
 Thumbs.db
 
-# IDE state files (bootstrap generates these per IDE — only copilot-instructions.md is committed)
-# See mg-mode-core/activation/README.md for which IDEs use which files
-.cursorrules
-.windsurfrules
-.aider.conf.yml
-codex.md
-GEMINI.md
-CLAUDE.md
+# IDE state files at the REPO ROOT only (bootstrap generates these per IDE).
+# Leading slash anchors the pattern so the template versions inside
+# conductor-core/activation/{ide}/ are NOT filtered.
+# See conductor-core/activation/README.md for which IDEs use which files.
+/.cursorrules
+/.windsurfrules
+/.aider.conf.yml
+/codex.md
+/GEMINI.md
+/CLAUDE.md
+/CONVENTIONS.md
+/AGENTS.md
+/.vscode/
 
 # Conductor local session state (user data, never committed)
 .conductor/

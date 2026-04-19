@@ -1,0 +1,62 @@
+{
+  "// Conductor — VS Code workspace tasks": "Run via the Tasks: Run Task command palette.",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Conductor: Status",
+      "type": "shell",
+      "command": "./orchestrator/conductor.sh",
+      "args": ["status"],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conductor: Preflight",
+      "type": "shell",
+      "command": "./orchestrator/conductor.sh",
+      "args": ["preflight"],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conductor: Resume",
+      "type": "shell",
+      "command": "./orchestrator/conductor.sh",
+      "args": ["resume"],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conductor: Validate State",
+      "type": "shell",
+      "command": "./orchestrator/conductor.sh",
+      "args": ["validate-state"],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conductor: Halt",
+      "type": "shell",
+      "command": "./orchestrator/conductor.sh",
+      "args": ["halt"],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conductor: Lint Bash",
+      "type": "shell",
+      "command": "shellcheck",
+      "args": ["-S", "warning", "orchestrator/conductor.sh", "orchestrator/lib/*.sh"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conductor: Lint Markdown",
+      "type": "shell",
+      "command": "npx",
+      "args": ["markdownlint", "conductor-core/**/*.md"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    }
+  ]
+}
